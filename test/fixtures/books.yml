@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  isbn: 1
+  googleid: MyString
+  category: MyString
+
+two:
+  isbn: 1
+  googleid: MyString
+  category: MyString

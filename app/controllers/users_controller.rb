@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:all]
+  skip_before_action :authenticate_user!, only: [:index]
 
-  def all
+  def index
     @users = User.all
   end
 
