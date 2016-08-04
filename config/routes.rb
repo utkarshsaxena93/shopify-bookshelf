@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     match '/users' => 'users#index', :via => :get, :as => :show_all_users
   end
 
+  # Route to search books
+  as :books do
+    match '/search' => 'books#search', :via => :get, :as => :search_books
+  end
+
 
 
 
