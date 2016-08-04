@@ -1,1 +1,8 @@
+<% content_for :head do %>
+  <title>ShopifyBookshelf</title>
+<% end %>
 <h1>Welcome to Shopify's Bookshelf</h1>
+
+<% content_for :scripts do %>
+  <%= javascript_include_tag 'homepage', 'data-turbolinks-track' => true %>
+<% end %>
