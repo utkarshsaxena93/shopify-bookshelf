@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # Route to view all Users
   as :users do
     match '/users' => 'users#index', :via => :get, :as => :show_all_users
+    match '/dashboard' => 'users#dashboard', :via => :get, :as => :user_dashboard
   end
 
   # Route to search books
