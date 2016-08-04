@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :books
   devise_for :users
+  resources :users, only: [:show]
   # Home Page
   root 'welcome#index'
 
