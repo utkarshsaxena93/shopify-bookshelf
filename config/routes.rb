@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   # Home Page
   root 'welcome#index'
 
+  # Route to view all Users
+  as :users do
+    match '/users/all' => 'users#all', :via => :get, :as => :show_all_users
+  end
+
 
 
 
