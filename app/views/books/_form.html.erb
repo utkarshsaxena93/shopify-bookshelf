@@ -1,48 +1,36 @@
-<%= form_for @book, :html => { :class => "form-horizontal book" } do |f| %>
+<%= render 'shared/errors', obj: @book %>
 
-  <% if @book.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h3>
+<div class="row">
+  <div class="col-lg-12">
+    <%= form_for @book, :html => { :class => "form-horizontal book", role: "form" } do |f| %>
+
+      <div class="form-group">
+        <%= f.label :isbn, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-10">
+          <%= f.text_field :isbn, :class => 'form-control' %>
+        </div>
       </div>
-      <div class="panel-body">
-        <ul>
-        <% @book.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
+      <div class="form-group">
+        <%= f.label :googleid, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-10">
+          <%= f.text_field :googleid, :class => 'form-control' %>
+        </div>
       </div>
-    </div>
-  <% end %>
+      <div class="form-group">
+        <%= f.label :category, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-10">
+          <%= f.text_field :category, :class => 'form-control' %>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :isbn, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :isbn, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:isbn) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :googleid, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :googleid, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:googleid) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :category, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :category, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:category) %>
-  </div>
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <%= f.submit nil, :class => 'btn btn-primary' %>
+          <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    books_path, :class => 'btn btn-default' %>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                books_path, :class => 'btn btn-default' %>
-    </div>
+    <% end %>
   </div>
-
-<% end %>
+</div>
