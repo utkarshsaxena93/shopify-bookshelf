@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def dashboard
     @user = current_user
+    @books = @user.books
   end
 
 end
