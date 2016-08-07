@@ -7,6 +7,7 @@
 ###
 $(document).on 'ready', (event) ->
   addBooks =
+    googleBooksURL: 'https://www.googleapis.com/books/v1/volumes'
     init: () ->
       this.cacheDom()
       this.bindEvents();
@@ -21,9 +22,13 @@ $(document).on 'ready', (event) ->
           this.$container.addClass("has-error")
         else
           this.$container.removeClass("has-error")
-        if isbnNumber.length > 9
-          console.log isbnNumber
-
-
+          this.getInformation(isbnNumber)
+    getInformation: (isbn) ->
+      $.get(this.googleBooksURL, { q : isbn, maxResults: 3, projection: "lite" }, (data) =>
+        console.log(data);
+        # Update the dom only when new results are different from old results
+      );
+    render: () ->
+      console.log "rendering dom"
 
   addBooks.init()
