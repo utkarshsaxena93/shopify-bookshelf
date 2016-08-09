@@ -8,6 +8,7 @@
 $(document).on 'ready', (event) ->
   addBooks =
     googleBooksURL: 'https://www.googleapis.com/books/v1/volumes'
+    googleBooksData: []
     init: () ->
       this.cacheDom()
       this.bindEvents();
@@ -22,11 +23,22 @@ $(document).on 'ready', (event) ->
           this.$container.addClass("has-error")
         else
           this.$container.removeClass("has-error")
+        if isbnNumber.length == 13 or isbnNumber.length == 10
           this.getInformation(isbnNumber)
+    updateBookData: (newItems) ->
+      newData = newItems.items
+      existingData = this.googleBooksData;
+      if existingData[0]
+        # Check if IDs for all results match what we already have
+        update = !(newData.length is existingData.length and newData.every (elem, i) -> elem.id is existingData[i].id)
+        return update
+      else
+        return true
     getInformation: (isbn) ->
-      $.get(this.googleBooksURL, { q : isbn, maxResults: 3, projection: "lite" }, (data) =>
-        console.log(data);
-        # Update the dom only when new results are different from old results
+      $.get(this.googleBooksURL, { q : isbn, maxResults: 3, projection: "lite", key: "AIzaSyBnj2IuHkR0a5wFBDb7qVxjMa8Ly8zL_Oc" }, (data) =>
+        if data.items and this.updateBookData(data)
+          this.googleBooksData = data.items
+          this.render()
       );
     render: () ->
       console.log "rendering dom"

@@ -25,4 +25,4 @@ This is the fifth summer projects I will be developing using Ruby on Rails. Prim
 
 ## Timestamp: ##
 
-**July, 2016
+**August, 2016
