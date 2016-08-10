@@ -10,15 +10,12 @@
           <%= f.number_field :isbn, :class => 'form-control', autofocus: true %>
         </div>
       </div>
-      <span>
-  Hello, <strong bind="newBookInfo[0].id"></strong>
-</span>
-      <%= f.hidden_field :googleid, bind: "newBookInfo[0].id" %>
-      <%= f.hidden_field :category, bind: "newBookInfo[1].id" %>
+      <%= f.hidden_field :googleid, bind: "id" %>
+      <%= f.hidden_field :category, bind: "categories" %>
 
       <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-          <%= f.submit nil, :class => 'btn btn-primary', disabled: true %>
+          <%= f.submit nil, :class => 'btn btn-primary submit-btn', disabled: true %>
           <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                     books_path, :class => 'btn btn-default' %>
         </div>
