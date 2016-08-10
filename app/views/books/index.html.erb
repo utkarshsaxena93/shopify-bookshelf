@@ -9,13 +9,13 @@
     <%= will_paginate %>
 </div>
 <% @books.each do |book, index| %>
-  <div id="book-<%= book.id %>" class="well" data-googleid="<%= book.googleid %>">
+  <div id="book-<%= book.id %>" class="well" data-googleLink="<%= book.apiLink %>">
     <p>ISBN</p>
     <%= book.isbn %>
     <p>Category</p>
     <%= book.category %>
-    <p>link</p>
-    <%= book.apiLink %>
+    <p>Google ID</p>
+    <%= book.googleid %>
     <p>Title</p>
     <span class="book-<%= book.id %>__title"></span>
     <p>Image</p>
@@ -30,7 +30,7 @@
     <p class="book-<%= book.id %>__publishedDate"></p>
     <p class="book-<%= book.id %>__publisher"></p>
     <h4>
-      <span class="book-<%= book.id %>__avgRating"></span>/5
+      <span class="book-<%= book.id %>__avgRating"></span>
     </h4>
     <span class="book-<%= book.id %>__totalRatings"></span>
   </div>

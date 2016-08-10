@@ -1,21 +1,38 @@
-### JS Logic:
-1. Get the div ID
-2. Get the div isbn
-3. Make an ajax call.
-4. Get the data from GB.
-5. Sort the data to only what will be rendered.
-6. Use the save div ID to append it back to the div with the new information.
-7. Use scroll position to get the data from GB 10 books at a time.
-Note: Do not need two way data binding. Simply using jquery to append
-information should work
-Note 2: URL for query books https://books.google.ca/books?id=kDOlPwAACAAJ
-###
+# Browse books page specific JS
 
-booksData = (() ->
-  
+$(document).on 'ready', () ->
+  booksData = (() ->
+    $el = $('.well')
+    bookIDs = []
 
-  return {
-  }
-  )()
+    _render = (id, info) ->
+      $(".#{id}__title").text(info.title)
+      $(".#{id}__image").text(info.imageLinks.thumbnail)
+      $(".#{id}__link").text(info.previewLink)
+      $(".#{id}__description").text(info.description)
+      $(".#{id}__authors").text(if info.authors then info.authors.join(','))
+      $(".#{id}__publishedDate").text(info.publishedDate)
+      $(".#{id}__publisher").text(info.publisher)
+      $(".#{id}__avgRating").text("#{info.averageRating}/5")
+      $(".#{id}__totalRatings").text(info.ratingsCount)
+      return
 
-console.log(booksData)
+    _getGBdata = (item, index) ->
+      bookID = item.id
+      gbURL = item.url
+      $.get(gbURL, { key: "AIzaSyBnj2IuHkR0a5wFBDb7qVxjMa8Ly8zL_Oc" }, (result) =>
+        if result then _render(bookID, result.volumeInfo)
+    );
+
+    init = () ->
+
+      $el.each () ->
+        bookIDs.push id: $(this).attr('id'), url: $(this).attr('data-googlelink')
+      bookIDs.forEach(_getGBdata)
+
+    return {
+      init: init
+    }
+    )()
+
+  booksData.init();
