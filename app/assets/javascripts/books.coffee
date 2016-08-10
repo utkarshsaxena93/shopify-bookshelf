@@ -12,10 +12,10 @@ Note 2: URL for query books https://books.google.ca/books?id=kDOlPwAACAAJ
 ###
 
 booksData = (() ->
-
+  
 
   return {
-    a: 'a'
-    b: 'b'
   }
   )()
+
+console.log(booksData)

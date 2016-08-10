@@ -12,7 +12,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
 # Authentication using devise
 gem 'devise'
 
@@ -21,6 +20,10 @@ gem 'devise-bootstrap-views'
 
 # Twitter Bootstrap
 gem 'twitter-bootstrap-rails'
+
+# https://github.com/mislav/will_paginate
+gem 'will_paginate', '~> 3.1.0'
+gem 'bootstrap-will_paginate', '0.0.10'
 
 # https://github.com/Shopify/twine
 gem 'twine-rails'

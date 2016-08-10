@@ -5,8 +5,11 @@
               new_book_path,
               :class => 'btn btn-primary' %>
 </div>
+<div align="center">
+    <%= will_paginate %>
+</div>
 <% @books.each do |book, index| %>
-  <div class="well book-<%= book.id %>" data-googleid="<%= book.googleid %>">
+  <div id="book-<%= book.id %>" class="well" data-googleid="<%= book.googleid %>">
     <p>ISBN</p>
     <%= book.isbn %>
     <p>Category</p>
@@ -32,6 +35,9 @@
     <span class="book-<%= book.id %>__totalRatings"></span>
   </div>
 <% end %>
+<div align="center">
+    <%= will_paginate %>
+</div>
 
 <% content_for :scripts do %>
   <%= javascript_include_tag 'books' %>
