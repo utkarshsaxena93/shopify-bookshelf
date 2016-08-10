@@ -22,6 +22,9 @@ gem 'devise-bootstrap-views'
 # Twitter Bootstrap
 gem 'twitter-bootstrap-rails'
 
+# https://github.com/Shopify/twine
+gem 'twine-rails'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

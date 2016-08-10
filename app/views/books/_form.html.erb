@@ -10,8 +10,11 @@
           <%= f.number_field :isbn, :class => 'form-control', autofocus: true %>
         </div>
       </div>
-      <%= f.hidden_field :googleid %>
-      <%= f.hidden_field :category %>
+      <span>
+  Hello, <strong bind="newBookInfo[0].id"></strong>
+</span>
+      <%= f.hidden_field :googleid, bind: "newBookInfo[0].id" %>
+      <%= f.hidden_field :category, bind: "newBookInfo[1].id" %>
 
       <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">

@@ -1,3 +1,4 @@
+#= require twine
 ### JS logic to:
 1. Add an event handler to the input field
 2. Use ajax to query google books api.
@@ -6,6 +7,7 @@
 5. Enable the submit button.
 ###
 $(document).on 'ready', (event) ->
+  context = {}
   addBooks =
     googleBooksURL: 'https://www.googleapis.com/books/v1/volumes'
     googleBooksData: []
@@ -41,6 +43,9 @@ $(document).on 'ready', (event) ->
           this.render()
       );
     render: () ->
-      console.log "rendering dom"
+      context.newBookInfo = this.googleBooksData
+      $ ->
+        Twine.reset(context).bind().refresh()
+        return
 
   addBooks.init()
