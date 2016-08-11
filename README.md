@@ -4,6 +4,8 @@
 
 This is the fifth summer projects I will be developing using Ruby on Rails. Primary aim of these projects is to focus on learning Ruby on Rails and apply my knowledge to implement complex features in my web application.
 
+View the [Shopify Bookshelf here](https://shopify-bookshelf.herokuapp.com/).
+
 ## Technologies: ##
 
 * HTML/ERB Templating
@@ -18,6 +20,10 @@ This is the fifth summer projects I will be developing using Ruby on Rails. Prim
 * Be well equipped for my Fall '16 internship with Shopify.
 
 ## Procedure: ##
+
+1. View the [Shopify Bookshelf here](https://shopify-bookshelf.herokuapp.com/)
+
+OR
 
 1. Install [Ruby on Rails.](http://rubyonrails.org/)
 2. Browse to the root folder and run the following command in the terminal: rails server -p 0.0.0.0 or rails server
