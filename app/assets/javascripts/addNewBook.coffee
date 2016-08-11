@@ -11,11 +11,17 @@ ready = (event) ->
 
     cacheDom: () ->
 
-      this.$el = $('.book-isbn')
+      this.$el = $('.query-isbn')
+      this.$queryTitle = $('.query-title')
       this.$container = $('.form-group-isbn')
       this.$submitButton = $('.submit-btn')
 
     bindEvents: () ->
+
+      this.$queryTitle.on 'keyup', (event) =>
+        title = event.target.value
+        if title.length > 5
+          this.getInformation(title)
 
       this.$el.on 'keyup', (event) =>
         isbnNumber = event.target.value
@@ -40,9 +46,9 @@ ready = (event) ->
       else
         return true
 
-    getInformation: (isbn) ->
+    getInformation: (queryParam) ->
 
-      $.get(this.googleBooksURL, { q : isbn, maxResults: 1, key: "AIzaSyBnj2IuHkR0a5wFBDb7qVxjMa8Ly8zL_Oc" }, (data) =>
+      $.get(this.googleBooksURL, { q : queryParam, maxResults: 1, key: "AIzaSyBnj2IuHkR0a5wFBDb7qVxjMa8Ly8zL_Oc" }, (data) =>
         if data.items and this.updateBookData(data)
           this.googleBooksData = data.items
           this.render()
@@ -57,7 +63,7 @@ ready = (event) ->
         id : bookData.id,
         isbn : if volumeInfo.industryIdentifiers[0] then volumeInfo.industryIdentifiers[0].identifier
         authors : if volumeInfo.authors then volumeInfo.authors.join(',')
-        categories : volumeInfo.categories.join(',')
+        categories : if volumeInfo.categories then volumeInfo.categories.join(',') else ''
         description : volumeInfo.description
         title: volumeInfo.title
         imageLinks : volumeInfo.imageLinks
