@@ -5,13 +5,13 @@ ready = (event) ->
     googleBooksURL: 'https://www.googleapis.com/books/v1/volumes'
     googleBooksData: []
     init: () ->
-      
+
       this.cacheDom()
       this.bindEvents();
 
     cacheDom: () ->
 
-      this.$el = $('#book_isbn')
+      this.$el = $('.book-isbn')
       this.$container = $('.form-group-isbn')
       this.$submitButton = $('.submit-btn')
 
@@ -54,7 +54,8 @@ ready = (event) ->
 
       context.newBookInfo =
         selfLink : bookData.selfLink
-        id : bookData.id
+        id : bookData.id,
+        isbn : if volumeInfo.industryIdentifiers[0] then volumeInfo.industryIdentifiers[0].identifier
         authors : if volumeInfo.authors then volumeInfo.authors.join(',')
         categories : volumeInfo.categories.join(',')
         description : volumeInfo.description

@@ -6,7 +6,6 @@ $(document).on 'ready', () ->
     bookIDs = []
 
     _render = (id, info) ->
-      $(".#{id}__title").text(info.title)
       $(".#{id}__image").text(info.imageLinks.thumbnail)
       $(".#{id}__link").text(info.previewLink)
       $(".#{id}__description").text(info.description)

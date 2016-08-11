@@ -5,11 +5,13 @@
     <%= form_for @book, :html => { :class => "form-horizontal book", role: "form" } do |f| %>
 
       <div class="form-group form-group-isbn">
-        <%= f.label :isbn, :class => 'control-label col-lg-2' %>
+        <%= label_tag 'ISBN', nil, :class => 'control-label col-lg-2' %>
         <div class="col-lg-10">
-          <%= f.number_field :isbn, :class => 'form-control', autofocus: true %>
+          <%= number_field_tag 'ISBN', nil,:class => 'form-control book-isbn', autofocus: true %>
         </div>
       </div>
+      <%= f.hidden_field :isbn, bind: "isbn" %>
+      <%= f.hidden_field :title, bind: "title" %>
       <%= f.hidden_field :googleid, bind: "id" %>
       <%= f.hidden_field :category, bind: "categories" %>
       <%= f.hidden_field :apiLink, bind: "selfLink" %>
