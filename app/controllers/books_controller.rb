@@ -5,8 +5,12 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    #@books = Book.all
-    @books = Book.paginate(:page => params[:page], per_page: 2).order('id DESC')
+    @categories = Book.pluck(:category).uniq
+    if params[:category] == 'all'
+      @books = Book.paginate(:page => params[:page], per_page: 1).order('id DESC')
+    else
+      @books = Book.where('category like ?', "%#{params[:category]}%").paginate(:page => params[:page], per_page: 1).order('id DESC')
+    end
   end
 
   # GET /books/1

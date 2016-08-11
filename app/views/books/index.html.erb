@@ -5,38 +5,57 @@
               new_book_path,
               :class => 'btn btn-primary' %>
 </div>
-<div align="center">
-    <%= will_paginate %>
-</div>
-<% @books.each do |book, index| %>
-  <div id="book-<%= book.id %>" class="well" data-googleLink="<%= book.apiLink %>">
-    <p>ISBN</p>
-    <%= book.isbn %>
-    <p>Category</p>
-    <%= book.category %>
-    <p>Google ID</p>
-    <%= book.googleid %>
-    <p>Title</p>
-    <%= book.title %>
-    <p>Image</p>
-    <span class="book-<%= book.id %>__image"></span>
-    <p>Google link</p>
-    <span class="book-<%= book.id %>__link"></span>
-    <p>Description</p>
-    <span class="book-<%= book.id %>__description"></span>
-    <p>Description</p>
-    <span class="book-<%= book.id %>__description"></span>
-    <p class="book-<%= book.id %>__authors"></p>
-    <p class="book-<%= book.id %>__publishedDate"></p>
-    <p class="book-<%= book.id %>__publisher"></p>
-    <h4>
-      <span class="book-<%= book.id %>__avgRating"></span>
-    </h4>
-    <span class="book-<%= book.id %>__totalRatings"></span>
+<div class="row">
+  <div class="col-lg-12">
+    <h2>Form</h2>
+    <%= form_tag books_path,  method: :get, id: 'filter-books-form' do |form| %>
+      <% @categories.each do |category| %>
+        <div class="radio">
+          <label>
+            <%= radio_button_tag "category", "#{category}", (params[:category] == category) %>
+            <%= label_tag :category, "#{category}" %>
+          </label>
+        </div>
+      <% end %>
+      <%= submit_tag("Filter", :class => 'btn btn-primary') %>
+    <% end %>
   </div>
-<% end %>
-<div align="center">
-    <%= will_paginate %>
+</div>
+
+<div class="container">
+  <div align="center">
+      <%= will_paginate %>
+  </div>
+  <% @books.each do |book, index| %>
+    <div id="book-<%= book.id %>" class="well" data-googleLink="<%= book.apiLink %>">
+      <p>ISBN</p>
+      <%= book.isbn %>
+      <p>Category</p>
+      <%= book.category %>
+      <p>Google ID</p>
+      <%= book.googleid %>
+      <p>Title</p>
+      <%= book.title %>
+      <p>Image</p>
+      <span class="book-<%= book.id %>__image"></span>
+      <p>Google link</p>
+      <span class="book-<%= book.id %>__link"></span>
+      <p>Description</p>
+      <span class="book-<%= book.id %>__description"></span>
+      <p>Description</p>
+      <span class="book-<%= book.id %>__description"></span>
+      <p class="book-<%= book.id %>__authors"></p>
+      <p class="book-<%= book.id %>__publishedDate"></p>
+      <p class="book-<%= book.id %>__publisher"></p>
+      <h4>
+        <span class="book-<%= book.id %>__avgRating"></span>
+      </h4>
+      <span class="book-<%= book.id %>__totalRatings"></span>
+    </div>
+  <% end %>
+  <div align="center">
+      <%= will_paginate %>
+  </div>
 </div>
 
 <% content_for :scripts do %>
