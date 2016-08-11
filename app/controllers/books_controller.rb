@@ -31,7 +31,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to user_dashboard_path, notice: 'Book was successfully created.' }
+        format.html { redirect_to user_dashboard_path, notice: 'Book was successfully added.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -59,7 +59,7 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.html { redirect_to user_dashboard_path, notice: 'Book was successfully deleted.' }
       format.json { head :no_content }
     end
   end
