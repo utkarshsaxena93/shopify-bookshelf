@@ -1,6 +1,15 @@
 <h1>User's dashboard</h1>
 <div class="well">
   <div class="row">
+    <div class="col-lg-12">
+      <%= form_tag invite_user_path, method: :post, id: 'invite-user-form' do %>
+        <p><%= label_tag :email %><br />
+        <%= email_field_tag :email, nil, :required => true %></p>
+        <%= submit_tag("Send Invite", :class => 'btn btn-primary') %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-lg-6">
       <%= link_to "Add a new book", new_book_path, class: "btn btn-primary btn-lg" %>
     </div>

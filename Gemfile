@@ -12,8 +12,13 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+
 # Authentication using devise
 gem 'devise'
+
+# Inviation using devise - https://github.com/scambra/devise_invitable
+gem 'devise_invitable'
+
 
 # Twitter Bootstrap for devise
 gem 'devise-bootstrap-views'
