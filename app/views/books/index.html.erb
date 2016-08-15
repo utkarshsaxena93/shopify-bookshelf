@@ -9,6 +9,10 @@
   <div class="col-lg-12">
     <h2>Form</h2>
     <%= form_tag books_path,  method: :get, id: 'filter-books-form' do |form| %>
+      <div class="form-group">
+        <%= label_tag :title, nil, :class => 'control-label col-lg-2' %>
+        <%= text_field_tag :title, params[:title], :class => 'form-control query-title', placeholder: "Search by title" %>
+      </div>
       <div class="radio">
         <label>
           <%= radio_button_tag "category", "All", (params[:category] == "All" || params[:category] == nil) %>

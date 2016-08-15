@@ -7,9 +7,9 @@ class BooksController < ApplicationController
   def index
     @categories = Book.pluck(:category).uniq
     if params[:category] == "All" or params[:category] == nil
-      @books = Book.paginate(:page => params[:page], per_page: 1).order('id DESC')
+      @books = Book.where('title like ?', "%#{params[:title]}%").paginate(:page => params[:page], per_page: 1).order('id DESC')
     else
-      @books = Book.where('category like ?', "%#{params[:category]}%").paginate(:page => params[:page], per_page: 1).order('id DESC')
+      @books = Book.where('title like ?', "%#{params[:title]}%").where('category like ?', "%#{params[:category]}%").paginate(:page => params[:page], per_page: 1).order('id DESC')
     end
   end
 
