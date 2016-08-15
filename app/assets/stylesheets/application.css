@@ -13,3 +13,18 @@
  *= require bootstrap_and_overrides
  *= require_self
  */
+
+ .profilelink__image--thumbnail {
+   width: 36px;
+ }
+
+ .nav>li>.profilelink--thumbnail {
+   display: inline-block ;
+   padding: 6px 0 0 0;
+   margin-left: 3px;
+   margin-right: 3px;
+ }
+
+ .nav>li>.usermenu-toggle {
+   display: inline-block;
+ }

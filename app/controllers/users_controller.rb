@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def create_invitation
     userExists = User.where(email: params[:email])
     invitationAccepted = user.pluck(:invitation_accepted_at)
-    
+
     if userExists.empty?
       User.invite!({:email => params[:email]}, current_user)
       redirect_to user_dashboard_path, notice: "Invitation successfully sent."
