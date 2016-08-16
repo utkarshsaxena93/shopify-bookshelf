@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :user_books, dependent: :destroy
-  has_many :books, through: :user_books
+  has_many :books, dependent: :destroy
   before_save { self.gravitarhash = Digest::MD5.hexdigest(self.email)}
 end
