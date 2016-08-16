@@ -6,10 +6,19 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @categories = Book.pluck(:category).uniq
+
     if params[:category] == "All" or params[:category] == nil
-      @books = Book.where('title like ?', "%#{params[:title]}%").paginate(:page => params[:page], per_page: 1).order('id DESC')
+      if params[:title] != nil and params[:title] != ""
+        @books = Book.where('lower(title) like ?', "%#{params[:title].downcase}%").paginate(:page => params[:page], per_page: 1).order('id DESC')
+      else
+        @books = Book.paginate(:page => params[:page], per_page: 1).order('id DESC')
+      end
     else
-      @books = Book.where('title like ?', "%#{params[:title]}%").where('category like ?', "%#{params[:category]}%").paginate(:page => params[:page], per_page: 1).order('id DESC')
+      if params[:title] != nil and params[:title] != ""
+        @books = Book.where('lower(title) like ? and category like ?', "%#{params[:title].downcase}%", "%#{params[:category]}%").paginate(:page => params[:page], per_page: 1).order('id DESC')
+      else
+        @books = Book.where('category like ?', "%#{params[:category]}%").paginate(:page => params[:page], per_page: 1).order('id DESC')
+      end
     end
   end
 
