@@ -1,6 +1,7 @@
 # Browse books page specific JS
 
 $(document).on 'ready', () ->
+
   booksData = (() ->
     $el = $('.well')
     bookIDs = []
@@ -34,4 +35,29 @@ $(document).on 'ready', () ->
     }
     )()
 
+  booksList = (() ->
+    $el = $('.dropdown-menu')
+
+    _render = (id, info) ->
+
+    _getBookID = (selector) ->
+      console.log 'get bookid'
+      $(selector).closest('.dropdown-menu').attr('data-bookid')
+
+    init = () ->
+      $el.on 'click', 'li', (event) ->
+        event.preventDefault()
+        targetUrl = event.target.href
+        bookid = _getBookID(event.target)
+        $.post( targetUrl, {bookid: bookid}, (result) =>
+            console.log(result)
+        );
+
+
+    return {
+      init: init
+    }
+    )()
+
   booksData.init();
+  booksList.init();

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816234808) do
+ActiveRecord::Schema.define(version: 20160817194502) do
 
   create_table "books", force: :cascade do |t|
     t.integer  "isbn",       limit: 8
@@ -25,6 +25,45 @@ ActiveRecord::Schema.define(version: 20160816234808) do
   end
 
   add_index "books", ["user_id"], name: "index_books_on_user_id"
+
+  create_table "books_readings", force: :cascade do |t|
+    t.integer  "isbn",       limit: 8
+    t.string   "googleid"
+    t.string   "category"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "apiLink"
+    t.string   "title"
+    t.integer  "user_id"
+  end
+
+  add_index "books_readings", ["user_id"], name: "index_books_readings_on_user_id"
+
+  create_table "books_reads", force: :cascade do |t|
+    t.integer  "isbn",       limit: 8
+    t.string   "googleid"
+    t.string   "category"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "apiLink"
+    t.string   "title"
+    t.integer  "user_id"
+  end
+
+  add_index "books_reads", ["user_id"], name: "index_books_reads_on_user_id"
+
+  create_table "books_wishlists", force: :cascade do |t|
+    t.integer  "isbn",       limit: 8
+    t.string   "googleid"
+    t.string   "category"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "apiLink"
+    t.string   "title"
+    t.integer  "user_id"
+  end
+
+  add_index "books_wishlists", ["user_id"], name: "index_books_wishlists_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

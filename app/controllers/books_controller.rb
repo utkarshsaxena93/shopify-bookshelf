@@ -80,6 +80,45 @@ class BooksController < ApplicationController
   def search
   end
 
+  def addToCurrentlyReading
+    book = Book.find(params[:bookid].to_i)
+    book.user = current_user
+    @currentlyreadinglist = BooksReading.new(book.attributes)
+    respond_to do |format|
+      if @currentlyreadinglist.save
+        format.json { render json: {success: true}}
+      else
+        format.json { render json: {success: false}}
+      end
+    end
+  end
+
+  def addToWishList
+    book = Book.find(params[:bookid].to_i)
+    book.user = current_user
+    @wishlist = BooksWishlist.new(book.attributes)
+    respond_to do |format|
+      if @wishlist.save
+        format.json { render json: {success: true}}
+      else
+        format.json { render json: {success: false}}
+      end
+    end
+  end
+
+  def addToAlreadyRead
+    book = Book.find(params[:bookid].to_i)
+    book.user = current_user
+    @alreadyReadList = BooksRead.new(book.attributes)
+    respond_to do |format|
+      if @alreadyReadList.save
+        format.json { render json: {success: true}}
+      else
+        format.json { render json: {success: false}}
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
