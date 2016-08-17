@@ -38,10 +38,12 @@ $(document).on 'ready', () ->
   booksList = (() ->
     $el = $('.dropdown-menu')
 
-    _render = (id, info) ->
+    _render = (target, success) ->
+      if success
+        $(target).addClass('bg-success').prop('disabled', true);
+
 
     _getBookID = (selector) ->
-      console.log 'get bookid'
       $(selector).closest('.dropdown-menu').attr('data-bookid')
 
     init = () ->
@@ -50,7 +52,7 @@ $(document).on 'ready', () ->
         targetUrl = event.target.href
         bookid = _getBookID(event.target)
         $.post( targetUrl, {bookid: bookid}, (result) =>
-            console.log(result)
+            _render(event.target, result.success, )
         );
 
 
