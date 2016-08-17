@@ -107,7 +107,6 @@ class BooksController < ApplicationController
   end
 
   def addToAlreadyRead
-    byebug
     book = Book.find(params[:bookid].to_i)
     book.user = current_user
     @alreadyReadList = BooksRead.new(book.attributes)
