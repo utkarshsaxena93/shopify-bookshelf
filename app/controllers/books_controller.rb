@@ -9,15 +9,15 @@ class BooksController < ApplicationController
 
     if params[:category] == "All" or params[:category] == nil
       if params[:title] != nil and params[:title] != ""
-        @books = Book.where('lower(title) like ?', "%#{params[:title].downcase}%").paginate(:page => params[:page], per_page: 1).group(:isbn).order('id DESC')
+        @books = Book.where('lower(title) like ?', "%#{params[:title].downcase}%").paginate(:page => params[:page], per_page: 1).order('id DESC').group(:isbn)
       else
-        @books = Book.paginate(:page => params[:page], per_page: 1).group(:isbn).order('id DESC')
+        @books = Book.paginate(:page => params[:page], per_page: 1).order('id DESC').group(:isbn)
       end
     else
       if params[:title] != nil and params[:title] != ""
-        @books = Book.where('lower(title) like ? and category like ?', "%#{params[:title].downcase}%", "%#{params[:category]}%").paginate(:page => params[:page], per_page: 1).group(:isbn).order('id DESC')
+        @books = Book.where('lower(title) like ? and category like ?', "%#{params[:title].downcase}%", "%#{params[:category]}%").paginate(:page => params[:page], per_page: 1).order('id DESC').group(:isbn)
       else
-        @books = Book.where('category like ?', "%#{params[:category]}%").paginate(:page => params[:page], per_page: 1).group(:isbn).order('id DESC')
+        @books = Book.where('category like ?', "%#{params[:category]}%").paginate(:page => params[:page], per_page: 1).order('id DESC').group(:isbn)
       end
     end
   end
