@@ -41,7 +41,8 @@ $(document).on 'ready', () ->
 
     _render = (target, success) ->
       if success
-        $(target).parent('li').addClass('disabled bg-success')
+        $(target).parent('li').addClass('bg-success')
+        $el.children('li').addClass('disabled')
         $elBtn.append($("<h3></h3>").text("Success."))
       else
         $elBtn.append($("<h3></h3>").text("Failed."))
