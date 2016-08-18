@@ -37,11 +37,14 @@ $(document).on 'ready', () ->
 
   booksList = (() ->
     $el = $('.dropdown-menu')
+    $elBtn = $('.dropdown-toggle')
 
     _render = (target, success) ->
       if success
-        $(target).addClass('bg-success').prop('disabled', true);
-
+        $(target).parent('li').addClass('disabled bg-success')
+        $elBtn.append($("<h3></h3>").text("Success."))
+      else
+        $elBtn.append($("<h3></h3>").text("Failed."))
 
     _getBookID = (selector) ->
       $(selector).closest('.dropdown-menu').attr('data-bookid')
