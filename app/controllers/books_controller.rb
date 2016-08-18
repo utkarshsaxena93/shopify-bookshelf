@@ -6,9 +6,12 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @categories = Book.pluck(:category).uniq
-    @userReadList = current_user.books_reads.select(:id).map{ |elem| elem.id }
-    @userWishList = current_user.books_wishlists.select(:id).map{ |elem| elem.id }
-    @userReadingList = current_user.books_readings.select(:id).map{ |elem| elem.id }
+
+    if current_user
+      @userReadList = current_user.books_reads.select(:id).map{ |elem| elem.id }
+      @userWishList = current_user.books_wishlists.select(:id).map{ |elem| elem.id }
+      @userReadingList = current_user.books_readings.select(:id).map{ |elem| elem.id }
+    end
 
     if params[:category] == "All" or params[:category] == nil
       if params[:title] != nil and params[:title] != ""
