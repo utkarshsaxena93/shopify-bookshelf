@@ -19,10 +19,9 @@
       </h4>
     </div>
     <div class="col-lg-12">
-      <% if !@user.books_readings.empty? %>
       You are currently reading:
-        <%= @user.books_readings.map{|book| book.title}.join(",") %>
-      <% end %>
+      <%= render 'books/currentlyReadingList', :obj => @user.books_readings %>
+
     </div>
     <div class="col-lg-12">
       <h4>Books added by you</h4>
@@ -30,11 +29,11 @@
     </div>
     <div class="col-lg-12">
       <h4>Books you have completed reading.</h4>
-      <%= render 'books/list', :obj => @user.books_reads %>
+      <%= render 'books/readList', :obj => @user.books_reads %>
     </div>
     <div class="col-lg-12">
       <h4>Books you wish to read</h4>
-      <%= render 'books/list', :obj => @user.books_wishlists %>
+      <%= render 'books/wishlist', :obj => @user.books_wishlists %>
     </div>
   </div>
 </div>

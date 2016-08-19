@@ -96,6 +96,23 @@ class BooksController < ApplicationController
     end
   end
 
+  def destroyCurrentlyReading
+    books_reading = current_user.books_readings
+    books_reading.find(params[:id].to_i).destroy()
+    book = Book.find(params[:id].to_i)
+    book.user = current_user
+    @booksread = BooksRead.new(book.attributes)
+
+    respond_to do |format|
+      if @booksread.save
+        format.html { redirect_to user_dashboard_path, notice: 'Book was successfully moved to your "Read" list.' }
+        format.json { head :no_content }
+      else
+        format.json { render json: {success: false}}
+      end
+    end
+  end
+
   def addToWishList
     book = Book.find(params[:bookid].to_i)
     book.user = current_user
@@ -109,6 +126,15 @@ class BooksController < ApplicationController
     end
   end
 
+  def destroyWishList
+    books_wishlist = current_user.books_wishlists
+    books_wishlist.find(params[:id].to_i).destroy()
+    respond_to do |format|
+      format.html { redirect_to user_dashboard_path, notice: 'Book was successfully deleted.' }
+      format.json { head :no_content }
+    end
+  end
+
   def addToAlreadyRead
     book = Book.find(params[:bookid].to_i)
     book.user = current_user
@@ -119,6 +145,15 @@ class BooksController < ApplicationController
       else
         format.json { render json: {success: false}}
       end
+    end
+  end
+
+  def destroyAlreadyRead
+    books_read = current_user.books_reads
+    books_read.find(params[:id].to_i).destroy()
+    respond_to do |format|
+      format.html { redirect_to user_dashboard_path, notice: 'Book was successfully deleted.' }
+      format.json { head :no_content }
     end
   end
 

@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     match '/currentlyreadinglist' => 'books#addToCurrentlyReading', :via => :post, :as => :add_to_currently_reading
     match '/wishlist' => 'books#addToWishList', :via => :post, :as => :add_to_wish_list
     match '/read' => 'books#addToAlreadyRead', :via => :post, :as => :add_to_read
+    match '/destroycurrentlyreading/:id' => 'books#destroyCurrentlyReading', :via => :delete, :as => :remove_from_currently_reading
+    match '/destroywishlist/:id' => 'books#destroyWishList', :via => :delete, :as => :remove_from_wish_list
+    match '/destroyalreadyread/:id' => 'books#destroyAlreadyRead', :via => :delete, :as => :remove_from_already_read
   end
 
 
