@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   # Route to search books
   as :books do
-    match '/search' => 'books#search', :via => :get, :as => :search_books
     match '/currentlyreadinglist' => 'books#addToCurrentlyReading', :via => :post, :as => :add_to_currently_reading
     match '/wishlist' => 'books#addToWishList', :via => :post, :as => :add_to_wish_list
     match '/read' => 'books#addToAlreadyRead', :via => :post, :as => :add_to_read

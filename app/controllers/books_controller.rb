@@ -83,9 +83,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def search
-  end
-
   def addToCurrentlyReading
     book = Book.find(params[:bookid].to_i)
     book.user = current_user
