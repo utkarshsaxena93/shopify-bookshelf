@@ -4,17 +4,23 @@
     <% @users.each do |user| %>
       <div class="col-sm-6 col-lg-4" data-userid="<%= user.id %>">
       <div class="thumbnail">
-        <img src="https://www.gravatar.com/avatar/<%= user.gravitarhash %>?d=retro" alt="...">
+        <%= image_tag("https://www.gravatar.com/avatar/#{user.gravitarhash}?d=retro") %>
         <div class="caption">
           <h3><%= user.email %></h3>
           <p>
-             Currently reading: <%= if user.books_readings[0] then user.books_readings[0].title else "None" end %>
+             <% if !user.books_readings.empty? %>
+             Currently reading:
+               <%= user.books_readings.map{|book| book.title}.join(",") %>
+             <% end %>
           </p>
           <p>
              Number of book(s) read: <%= user.books_reads.count %>
           </p>
           <p>
              Books on WishList: <%= user.books_wishlists.count %>
+          </p>
+          <p>
+             Number of book(s) contributed to Shopify Bookshelf: <%= user.books.count %>
           </p>
           <p>
             <%= link_to 'View Profile', user_path(user), :class => 'btn btn-primary' %>

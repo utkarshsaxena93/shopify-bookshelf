@@ -4,7 +4,7 @@
     <div class="col-lg-12">
       <%= form_tag invite_user_path, method: :post, id: 'invite-user-form' do %>
         <p><%= label_tag :email %><br />
-        <%= email_field_tag :email, nil, :required => true %></p>
+        <%= email_field_tag :email, nil, :required => true, placeholder: "Enter your friend's email.", class: "form-control" %></p>
         <%= submit_tag("Send Invite", :class => 'btn btn-primary') %>
       <% end %>
     </div>
@@ -19,7 +19,22 @@
       </h4>
     </div>
     <div class="col-lg-12">
+      <% if !@user.books_readings.empty? %>
+      You are currently reading:
+        <%= @user.books_readings.map{|book| book.title}.join(",") %>
+      <% end %>
+    </div>
+    <div class="col-lg-12">
+      <h4>Books added by you</h4>
       <%= render 'books/list', :obj => @books %>
+    </div>
+    <div class="col-lg-12">
+      <h4>Books you have completed reading.</h4>
+      <%= render 'books/list', :obj => @user.books_reads %>
+    </div>
+    <div class="col-lg-12">
+      <h4>Books you wish to read</h4>
+      <%= render 'books/list', :obj => @user.books_wishlists %>
     </div>
   </div>
 </div>

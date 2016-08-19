@@ -1,2 +1,21 @@
 <h1>View a user page.</h1>
-<%= @user %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 well">
+      <div class="text-center">
+        <%= image_tag("https://www.gravatar.com/avatar/#{@user.gravitarhash}?d=retro") %>
+        <%= @user.email %>
+        <% if !@user.books_readings.empty? %>
+        <h4>Book the user is currently reading.</h4>
+          <%= @user.books_readings.map{|book| book.title}.join(",") %>
+        <% end %>
+        <h4>Books user has read</h4>
+        <%= render 'books/list', :obj => @user.books_reads %>
+        <h4>Books user wishes to read</h4>
+        <%= render 'books/list', :obj => @user.books_wishlists %>
+        <h4>Books contributed to Shopify Bookshelf</h4>
+        <%= render 'books/list', :obj => @user.books %>
+      </div>
+    </div>
+  </div>
+</div>
