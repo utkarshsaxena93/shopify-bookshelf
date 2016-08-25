@@ -4,9 +4,16 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   # Home Page
   root 'stories#index'
-  resources :stories, except: [:index]
+  #resources :stories, except: [:index]
 
-  # Route to view all Users
+  # Route for Stories
+  resources :stories, except: [:index] do
+    member do
+      post :like
+    end
+  end
+
+  # Route for Users
   as :users do
     match '/users' => 'users#index', :via => :get, :as => :show_all_users
     match '/dashboard' => 'users#dashboard', :via => :get, :as => :user_dashboard
@@ -14,7 +21,7 @@ Rails.application.routes.draw do
     match '/inviteuser' => 'users#create_invitation', :via => :post, :as => :invite_user
   end
 
-  # Route to search books
+  # Route for books
   as :books do
     match '/currentlyreadinglist' => 'books#addToCurrentlyReading', :via => :post, :as => :add_to_currently_reading
     match '/wishlist' => 'books#addToWishList', :via => :post, :as => :add_to_wish_list

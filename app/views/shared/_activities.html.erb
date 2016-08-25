@@ -1,18 +1,19 @@
 <div class="col-lg-12">
-  <div class="col-sm-3">
   <ul class="list-group">
     <% @activities.each do |activity| %>
       <li class="list-group-item">
         <span class="glyphicon glyphicon-<%= activity.key.match(/\.(.*)/)[1] %>"></span>
+        <small class="text-muted"><%= activity.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br/>
         <strong><%= activity.owner.email %></strong>
-        <%= render_activity activity, display: :i18n %>
+        <%= render_activity(activity, display: :i18n) %>
         <% if activity.trackable %>
           "<%= link_to activity.trackable.title, story_path(activity.trackable) %>"
+        <% elsif activity.title %>
+          <span class="text-muted">"<%= activity.title %>"</span>
         <% else %>
           .
         <% end %>
       </li>
     <% end %>
   </ul>
-</div>
 </div>

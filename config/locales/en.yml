@@ -26,3 +26,4 @@ en:
       create: 'has told a story'
       destroy: 'has removed the story'
       update: 'has edited the story'
+      like: 'has liked the story'

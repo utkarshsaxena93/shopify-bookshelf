@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  before_action :find_story, only: [:destroy, :show, :edit, :update]
+  before_action :find_story, only: [:destroy, :show, :edit, :update, :like]
   before_action :load_activities, only: [:index, :show, :new, :edit]
   skip_before_action :authenticate_user!, only: [:index]
 
@@ -45,6 +45,15 @@ class StoriesController < ApplicationController
   def show
   end
 
+  def like
+    without_tracking do
+      @story.increment!(:likes)
+    end
+    @story.create_activity :like
+    flash[:success] = 'Thanks for sharing your opinion!'
+    redirect_to story_path(@story)
+  end
+
   private
 
   def story_params
@@ -57,5 +66,11 @@ class StoriesController < ApplicationController
 
   def load_activities
     @activities = PublicActivity::Activity.order('created_at DESC').limit(20)
+  end
+
+  def without_tracking
+    Story.public_activity_off
+    yield if block_given?
+    Story.public_activity_on
   end
 end
