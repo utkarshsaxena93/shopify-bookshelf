@@ -1,10 +1,7 @@
 <%= form_for @story do |f| %>
   <%= render 'shared/errors', obj: @story %>
 
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control', required: true %>
-  </div>
+    <%= f.hidden_field :title, class: 'hidden-title', value: 'Quote'  %>
 
   <div class="form-group">
     <%= f.label :body %>
