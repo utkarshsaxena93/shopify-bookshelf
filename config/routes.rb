@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show]
   # Home Page
-  root 'welcome#index'
+  root 'stories#index'
+  resources :stories, except: [:index]
 
   # Route to view all Users
   as :users do

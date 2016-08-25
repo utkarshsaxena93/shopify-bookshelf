@@ -42,6 +42,12 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# https://github.com/ai/autoprefixer-rails
+gem "autoprefixer-rails"
+
+# https://github.com/chaps-io/public_activity#publicactivity-
+gem 'public_activity'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

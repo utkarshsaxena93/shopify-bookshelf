@@ -1,0 +1,18 @@
+<div class="col-lg-12">
+  <div class="col-sm-3">
+  <ul class="list-group">
+    <% @activities.each do |activity| %>
+      <li class="list-group-item">
+        <span class="glyphicon glyphicon-<%= activity.key.match(/\.(.*)/)[1] %>"></span>
+        <strong><%= activity.owner.email %></strong>
+        <%= render_activity activity, display: :i18n %>
+        <% if activity.trackable %>
+          "<%= link_to activity.trackable.title, story_path(activity.trackable) %>"
+        <% else %>
+          .
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+</div>
