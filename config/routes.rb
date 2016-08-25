@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   as :users do
     match '/users' => 'users#index', :via => :get, :as => :show_all_users
     match '/dashboard' => 'users#dashboard', :via => :get, :as => :user_dashboard
+    match '/deleteaccount' => 'users#destroy', :via => :get, :as => :delete_my_account
     match '/inviteuser' => 'users#create_invitation', :via => :post, :as => :invite_user
   end
 

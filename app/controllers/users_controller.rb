@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @users = User.all
+    @users = User.all.where.not(id: current_user.id)
   end
 
   def show
@@ -12,6 +12,19 @@ class UsersController < ApplicationController
   def dashboard
     @user = current_user
     @books = @user.books
+  end
+
+  def destroy
+    @user = current_user
+
+    respond_to do |format|
+      if @user.destroy()
+        format.html { redirect_to root_path, alert: 'Your account has been deleted!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to root_path, alert: 'Failed to delete account. Please try again.' }
+      end
+    end
   end
 
   def create_invitation

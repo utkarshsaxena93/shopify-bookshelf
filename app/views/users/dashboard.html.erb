@@ -35,5 +35,11 @@
       <h4>Books you wish to read</h4>
       <%= render 'books/wishlist', :obj => @user.books_wishlists %>
     </div>
+    <div class="col-lg-12">
+      <%= link_to "DELETE ACCOUNT",
+      delete_my_account_path,
+       :data => { :confirm => "Are you sure?"},
+       class: "btn btn-danger btn-lg" %>
+    </div>
   </div>
 </div>
