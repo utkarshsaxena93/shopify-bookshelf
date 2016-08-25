@@ -5,23 +5,30 @@
 
 
 <h1>Welcome to Shopify's Bookshelf</h1>
-<p><%= link_to 'Tell one!', new_story_path, class: 'btn btn-primary btn-large' %></p>
-
-<% @stories.each do |story| %>
-  <div class="well well-lg">
-    <h2><%= link_to story.title, story_path(story) %></h2>
-
-    <p><%= truncate(story.body, length: 350) %></p>
-
-    <div class="btn-group">
-      <%= link_to 'Edit', edit_story_path(story), class: 'btn btn-info' %>
-      <%= link_to 'Delete', story_path(story), data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger' %>
-    </div>
+<div class="row">
+  <div class="col-lg-8">
+    <%= render 'form' %>
   </div>
-<% end %>
+</div>
 
-<div class="col-lg-12">
-  <%= render 'shared/activities' %>
+<div class="row">
+  <div class="col-lg-8">
+    <% @stories.each do |story| %>
+      <div class="well well-lg">
+        <h2><%= link_to story.title, story_path(story) %></h2>
+
+        <p><%= truncate(story.body, length: 350) %></p>
+
+        <div class="btn-group">
+          <%= link_to 'Edit', edit_story_path(story), class: 'btn btn-info' %>
+          <%= link_to 'Delete', story_path(story), data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-lg-4">
+    <%= render 'shared/activities' %>
+  </div>
 </div>
 
 <% content_for :scripts do %>

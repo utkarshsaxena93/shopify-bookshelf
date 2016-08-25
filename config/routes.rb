@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   # Home Page
   root 'stories#index'
-  #resources :stories, except: [:index]
 
   # Route for Stories
   resources :stories, except: [:index] do
