@@ -35,10 +35,12 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    if @story.destroy
-      flash[:success] = 'The storyt was deleted!'
-    else
-      flash[:error] = 'Cannot delete this story...'
+    without_tracking do
+      if @story.destroy
+        flash[:success] = 'The story was deleted!'
+      else
+        flash[:error] = 'Cannot delete this story...'
+      end
     end
     redirect_to root_path
   end
