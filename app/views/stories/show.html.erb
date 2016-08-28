@@ -3,7 +3,10 @@
 <% end %>
 
 
-<p><%= @story.title %></p>
+<h1><a href="https://www.google.com/search?tbm=bks&q=<%= @story.title %>" target="_blank"><%= @story.title %></a></h1>
+<p>
+  <%= @story.body %>
+</p>
 <p>
   <span class="label label-default"><%= pluralize(@story.likes, 'like') %></span>
   <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-thumbs-up') + ' Like it',

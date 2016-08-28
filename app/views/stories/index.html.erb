@@ -17,7 +17,7 @@
   <div class="col-lg-8">
     <% @stories.each do |story| %>
       <div class="well well-lg">
-        <h2><a href="https://www.google.com/search?tbm=bks&q=<%= story.title %>" target="_blank"><%= story.title %></a></h2>
+        <h2><%= link_to story.title, story_path(story) %></h2>
 
         <p><%= truncate(story.body, length: 350) %></p>
 
