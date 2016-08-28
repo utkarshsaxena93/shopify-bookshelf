@@ -24,12 +24,14 @@
         <p>
           Added by: <%= story.user.email %>
         </p>
-        <p>
-          <span class="label label-default"><%= pluralize(story.likes.count, 'like') %></span>
-          <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-thumbs-up') + ' Like it',
-                       like_story_path(story), class: 'btn btn-default btn-sm',
-                       method: :post, disabled: (if story.likes[0] then story.likes[0].user_id == current_user.id end) %>
-        </p>
+        <% if current_user %>
+          <p>
+            <span class="label label-default"><%= pluralize(story.likes.count, 'like') %></span>
+            <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-thumbs-up') + ' Like it',
+                         like_story_path(story), class: 'btn btn-default btn-sm',
+                         method: :post, disabled: (if story.likes[0] then story.likes[0].user_id == current_user.id end) %>
+          </p>
+        <% end %>
 
         <% if story.user == current_user %>
           <div class="btn-group">
