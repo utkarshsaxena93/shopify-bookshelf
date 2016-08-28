@@ -68,11 +68,11 @@
       <span class="book-<%= book.id %>__totalRatings"></span>
       <% if current_user %>
         <div class="book-<%= book.id %>__dropdown dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <button class="btn btn-primary dropdown-toggle add-book-to-list-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Add to list
             <span class="caret"></span>
           </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" data-bookid="<%= book.id %>">
+          <ul class="dropdown-menu add-book-to-list-dropdown" aria-labelledby="add-book-to-list-dropdown" data-bookid="<%= book.id %>">
             <li class="<%= 'disabled' if @userReadingList.include?(book.id) or @userWishList.include?(book.id) %> <%= 'disabled bg-success' if @userReadList.include?(book.id) %>"><%= link_to 'Read', add_to_read_path, class: 'add-to-read' %></li>
             <li class="<%= 'disabled' if @userReadList.include?(book.id) or @userWishList.include?(book.id) %> <%= 'disabled bg-success' if @userReadingList.include?(book.id) %>"><%= link_to 'Currently Reading', add_to_currently_reading_path, class: 'add-to-currently-reading' %></li>
             <li class="<%= 'disabled' if @userReadingList.include?(book.id) or @userReadList.include?(book.id) %> <%= 'disabled bg-success' if @userWishList.include?(book.id) %>"><%= link_to 'Want to Read', add_to_wish_list_path, class: 'add-to-wish-list' %></li>

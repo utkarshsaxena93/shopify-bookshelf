@@ -97,8 +97,11 @@ class BooksController < ApplicationController
   end
 
   def destroyCurrentlyReading
-    books_reading = current_user.books_readings
-    books_reading.find(params[:id].to_i).destroy()
+    without_tracking(BooksReading) do
+      books_reading = current_user.books_readings
+      books_reading.find(params[:id].to_i).destroy()
+    end
+
     book = Book.find(params[:id].to_i)
     book.user = current_user
     @booksread = BooksRead.new(book.attributes)
@@ -128,7 +131,9 @@ class BooksController < ApplicationController
 
   def destroyWishList
     books_wishlist = current_user.books_wishlists
-    books_wishlist.find(params[:id].to_i).destroy()
+    without_tracking(BooksWishlist) do
+      books_wishlist.find(params[:id].to_i).destroy()
+    end
     respond_to do |format|
       format.html { redirect_to user_dashboard_path, notice: 'Book was successfully deleted.' }
       format.json { head :no_content }
@@ -150,7 +155,9 @@ class BooksController < ApplicationController
 
   def destroyAlreadyRead
     books_read = current_user.books_reads
-    books_read.find(params[:id].to_i).destroy()
+    without_tracking(BooksRead) do
+      books_read.find(params[:id].to_i).destroy()
+    end
     respond_to do |format|
       format.html { redirect_to user_dashboard_path, notice: 'Book was successfully deleted.' }
       format.json { head :no_content }
@@ -161,10 +168,19 @@ class BooksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        flash[:error] = "The book seems to have been deleted!"
+        redirect_to :back
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
       params.require(:book).permit(:isbn, :googleid, :category, :apiLink, :title)
+    end
+
+    def without_tracking(modalName)
+      modalName.public_activity_off
+      yield if block_given?
+      modalName.public_activity_on
     end
 end

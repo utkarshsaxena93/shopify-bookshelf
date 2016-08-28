@@ -21,6 +21,15 @@
 
 en:
   activity:
+    books_wishlist:
+      create: 'to wishlist.'
+    books_read:
+      create: 'has finished reading'
+    books_reading:
+      create: 'is reading'
+    book:
+      destroy: 'has removed'
+      create: 'has added'
     like:
       create: 'has liked the update'
     story:

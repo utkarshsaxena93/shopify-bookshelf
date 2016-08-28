@@ -36,8 +36,8 @@ $(document).on 'ready', () ->
     )()
 
   booksList = (() ->
-    $el = $('.dropdown-menu')
-    $elBtn = $('.dropdown-toggle')
+    $el = $('.add-book-to-list-dropdown')
+    $elBtn = $('.add-book-to-list-btn')
 
     _render = (target, success) ->
       if success
@@ -53,11 +53,14 @@ $(document).on 'ready', () ->
     init = () ->
       $el.on 'click', 'li', (event) ->
         event.preventDefault()
-        targetUrl = event.target.href
-        bookid = _getBookID(event.target)
-        $.post( targetUrl, {bookid: bookid}, (result) =>
-            _render(event.target, result.success, )
-        );
+        classNames = $(event.target).parent('li').attr("class")
+        if !(/disabled/.test(classNames))
+          targetUrl = event.target.href
+          bookid = _getBookID(event.target)
+          $.post( targetUrl, {bookid: bookid}, (result) =>
+              _render(event.target, result.success, )
+          );
+        false
 
 
     return {
