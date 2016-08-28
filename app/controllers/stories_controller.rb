@@ -48,10 +48,13 @@ class StoriesController < ApplicationController
 
   def like
     without_tracking do
-      @story.increment!(:likes)
+      @likes = Like.new(user_id: current_user.id, story_id: @story.id)
     end
-    @story.create_activity :like
-    flash[:success] = 'Thanks for sharing your opinion!'
+    if @likes.save
+      flash[:success] = 'Thanks for the like!'
+    else
+      flash[:error] = 'Please try again.'
+    end
     redirect_to story_path(@story)
   end
 
@@ -59,6 +62,10 @@ class StoriesController < ApplicationController
 
   def story_params
     params.require(:story).permit(:title, :body)
+  end
+
+  def like_params
+    params.require(:likes).permit(:user_id, :story_id)
   end
 
   def find_story
