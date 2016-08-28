@@ -61,7 +61,7 @@ ready = (event) ->
       context.newBookInfo =
         selfLink : bookData.selfLink
         id : bookData.id,
-        isbn : if volumeInfo.industryIdentifiers[0] then volumeInfo.industryIdentifiers[0].identifier
+        isbn : if volumeInfo.industryIdentifiers? and volumeInfo.industryIdentifiers[0]? then volumeInfo.industryIdentifiers[0].identifier
         authors : if volumeInfo.authors then volumeInfo.authors.join(',')
         categories : if volumeInfo.categories then volumeInfo.categories.join(',') else ''
         description : volumeInfo.description
