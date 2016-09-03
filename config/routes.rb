@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # Home Page
   root 'stories#index'
 
+  # About Page
+  get '/about' => 'welcome#index'
+
   # Route for Stories
   resources :stories, except: [:index] do
     member do
