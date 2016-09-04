@@ -22,17 +22,24 @@
 en:
   activity:
     books_wishlist:
-      create: 'to wishlist.'
+      create: 'wishlisted'
     books_read:
-      create: 'has finished reading'
+      create: 'finished reading'
     books_reading:
       create: 'is reading'
     book:
-      destroy: 'has removed'
-      create: 'has added'
+      destroy: 'removed'
+      create: 'added'
     like:
-      create: 'has liked the update'
+      create: 'liked the update'
     story:
-      create: 'has shared an update'
-      destroy: 'has removed the update'
-      update: 'has edited the update'
+      create: 'shared an update'
+      destroy: 'removed the update'
+      update: 'edited the update'
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              invalid: "invalid. Only @shopify email addresses are permitted."

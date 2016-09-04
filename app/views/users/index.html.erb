@@ -6,7 +6,7 @@
       <div class="thumbnail">
         <%= image_tag("https://www.gravatar.com/avatar/#{user.gravitarhash}?d=retro") %>
         <div class="caption">
-          <h3><%= user.email %></h3>
+          <h3><%= user.name %></h3>
           <p>
              <% if !user.books_readings.empty? %>
              Currently reading:

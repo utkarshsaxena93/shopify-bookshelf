@@ -4,6 +4,7 @@
     <div class="col-lg-8 col-lg-offset-2 well">
       <div class="text-center">
         <%= image_tag("https://www.gravatar.com/avatar/#{@user.gravitarhash}?d=retro") %>
+        <%= @user.name %>
         <%= @user.email %>
         <% if !@user.books_readings.empty? %>
         <h4>Book the user is currently reading.</h4>
