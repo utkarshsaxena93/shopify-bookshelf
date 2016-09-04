@@ -2,15 +2,31 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
+<div id="book" class="well" data-googleurl="https://www.googleapis.com/books/v1/volumes/<%= @book.googleid %>">
+  <p>ISBN</p>
+  <%= @book.isbn %>
+  <p>Category</p>
+  <%= @book.category %>
+  <p>Title</p>
+  <a href="https://books.google.ca/books?id=<%= @book.googleid %>&hl=&source=gbs_api" target="_blank"><%= @book.title %></a>
+  <p>Image</p>
+  <span class="book__image"></span>
+  <p>Google link</p>
+  <span class="book__link"></span>
+  <p>Description</p>
+  <span class="book__description"></span>
+  <p>Added by</p>
+  <span class="book__addedby"><%= @book.user.name %></span>
+  <p>Other Info</p>
+  <p class="book__authors"></p>
+  <p class="book__publishedDate"></p>
+  <p class="book__publisher"></p>
+  <h4>
+    <span class="book__avgRating"></span>
+  </h4>
+  <span class="book__totalRatings"></span>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:isbn) %>:</strong></dt>
-  <dd><%= @book.isbn %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:googleid) %>:</strong></dt>
-  <dd><%= @book.googleid %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:category) %>:</strong></dt>
-  <dd><%= @book.category %></dd>
-</dl>
+
 
 <% if current_user == @book.user %>
   <%= link_to t('.back', :default => t("helpers.links.back")),
@@ -22,4 +38,8 @@
                 :method => 'delete',
                 :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                 :class => 'btn btn-danger' %>
+<% end %>
+
+<% content_for :scripts do %>
+  <%= javascript_include_tag 'showBook' %>
 <% end %>
