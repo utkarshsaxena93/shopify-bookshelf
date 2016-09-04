@@ -22,14 +22,14 @@
 en:
   activity:
     books_wishlist:
-      create: 'wishlisted'
+      create: 'to wishlist.'
     books_read:
-      create: 'finished reading'
+      create: 'to finished reading.'
     books_reading:
-      create: 'is reading'
+      create: 'to currently reading.'
     book:
       destroy: 'removed'
-      create: 'added'
+      create: 'to the bookshelf.'
     like:
       create: 'liked the update'
     story:

@@ -76,7 +76,9 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-    @book.destroy
+    without_tracking(Book) do
+      @book.destroy
+    end
     respond_to do |format|
       format.html { redirect_to user_dashboard_path, notice: 'Book was successfully deleted.' }
       format.json { head :no_content }
