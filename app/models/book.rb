@@ -8,7 +8,6 @@ class Book < ActiveRecord::Base
           title: Proc.new { |controller, model| model.title }
 
   def pause_tracking
-    byebug
     Book.public_activity_off
     return true
   end

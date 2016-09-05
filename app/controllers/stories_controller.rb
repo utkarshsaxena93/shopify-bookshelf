@@ -57,7 +57,7 @@ class StoriesController < ApplicationController
     else
       flash[:error] = 'Please try again.'
     end
-    redirect_to story_path(@story)
+    redirect_to :back
   end
 
   private

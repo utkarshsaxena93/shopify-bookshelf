@@ -18,6 +18,11 @@
   color: $shopify-green;
 }
 
+.stories-container {
+  max-height: 650px;
+  overflow-y: auto;
+}
+
 .story {
   border-bottom: 1px solid #c3c3c3;
   padding-bottom: 20px;

@@ -19,33 +19,8 @@
       </div>
     </div>
     <div class="col-lg-4">
-      <div class="custom-well">
-        <% @stories.each do |story| %>
-          <div class="story">
-            <h4 class="story__heading"><%= link_to story.title, story_path(story) %></h4>
-
-            <p class="story__content">"<%= truncate(story.body, length: 350) %>"</p>
-
-            <p class="story__addedBy">
-              Added by: <%= story.user.name %>
-            </p>
-            <% if current_user %>
-              <p class="story__buttons">
-                <span class="badge story__buttons__likecount"><%= pluralize(story.likes.count, 'like') %></span>
-                <%= link_to content_tag(:span, '', class: 'fa fa-thumbs-o-up') + ' Like it',
-                             like_story_path(story), class: 'story__buttons__likebtn',
-                             method: :post, disabled: (if story.likes[0] then story.likes[0].user_id == current_user.id end) %>
-              </p>
-            <% end %>
-
-            <% if story.user == current_user %>
-              <div class="btn-group">
-                <%= link_to 'Edit', edit_story_path(story), class: 'label label-primary' %>
-                <%= link_to 'Delete', story_path(story), data: {confirm: 'Are you sure?'}, method: :delete, class: 'label label-danger' %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+      <div class="custom-well stories-container">
+        <%= render 'list' %>
       </div>
     </div>
   </div>
