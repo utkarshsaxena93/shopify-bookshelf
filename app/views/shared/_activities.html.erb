@@ -1,48 +1,49 @@
 <ul class="list-group custom-well">
   <% @activities.each do |activity| %>
-    <li class="list-group-item">
-      <span class="glyphicon glyphicon-<%= activity.key.match(/\.(.*)/)[1] %>"></span>
-      <small class="text-muted"><%= activity.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br/>
-      <% if activity.owner %>
-        <% if current_user == activity.owner %>
-          <strong><%= link_to "You", user_path(User.where(email: activity.owner.email)[0].id) %></strong>
-        <% else %>
-          <strong><%= link_to activity.owner.name, user_path(User.where(email: activity.owner.email)[0].id) %></strong>
+    <li class="list-group-item user-activity">
+      <small class="text-muted datetime-text"><%= time_ago_in_words(activity.created_at) %> ago @ <%= activity.created_at.strftime('%l:%M %p %A, %d %b %Y') %></small>
+      <div class="activity-description">
+        <% if activity.owner %>
+          <% if current_user == activity.owner %>
+            <strong><%= link_to "You", user_path(User.where(email: activity.owner.email)[0].id) %></strong>
+          <% else %>
+            <strong><%= link_to activity.owner.name, user_path(User.where(email: activity.owner.email)[0].id) %></strong>
+          <% end %>
         <% end %>
-      <% end %>
-      <% if activity.trackable %>
-        <% if activity.trackable_type == "Like" %>
-          <%= render_activity(activity, display: :i18n) %>
-          "<%= link_to Story.find(activity.trackable.story_id).title, story_path(activity.trackable.story_id) %>"
-        <% elsif  activity.trackable_type == "BooksWishlist" %>
-          added
-          "<%= link_to activity.trackable.title, book_path(activity.trackable) %>"
-          <%= render_activity(activity, display: :i18n) %>
-        <% elsif  activity.trackable_type == "Story" %>
-          <%= render_activity(activity, display: :i18n) %>
-          "<%= link_to activity.trackable.title, book_path(activity.trackable) %>"
-        <% else %>
-          added
-          "<%= link_to activity.trackable.title, book_path(activity.trackable) %>"
-          <%= render_activity(activity, display: :i18n) %>
+        <% if activity.trackable %>
+          <% if activity.trackable_type == "Like" %>
+            <%= render_activity(activity, display: :i18n) %>
+            "<%= link_to Story.find(activity.trackable.story_id).title, story_path(activity.trackable.story_id) %>"
+          <% elsif  activity.trackable_type == "BooksWishlist" %>
+            added
+            "<%= link_to activity.trackable.title, book_path(activity.trackable) %>"
+            <%= render_activity(activity, display: :i18n) %>
+          <% elsif  activity.trackable_type == "Story" %>
+            <%= render_activity(activity, display: :i18n) %>
+            "<%= link_to activity.trackable.title, book_path(activity.trackable) %>"
+          <% else %>
+            added
+            "<%= link_to activity.trackable.title, book_path(activity.trackable) %>"
+            <%= render_activity(activity, display: :i18n) %>
+          <% end %>
+        <% elsif activity.title %>
+          <% if activity.trackable_type == "Like" %>
+            <%= render_activity(activity, display: :i18n) %>
+            "<%= activity.title %>"
+          <% elsif  activity.trackable_type == "BooksWishlist" %>
+            added
+            "<%= activity.title %>"
+            <%= render_activity(activity, display: :i18n) %>
+          <% elsif  activity.trackable_type == "Story" %>
+            <%= render_activity(activity, display: :i18n) %>
+            "<%= activity.title %>"
+          <% else %>
+            added
+            "<%= activity.title %>"
+            <%= render_activity(activity, display: :i18n) %>
+          <% end %>
         <% end %>
-      <% elsif activity.title %>
-      <% if activity.trackable_type == "Like" %>
-        <%= render_activity(activity, display: :i18n) %>
-        "<%= activity.title %>"
-      <% elsif  activity.trackable_type == "BooksWishlist" %>
-        added
-        "<%= activity.title %>"
-        <%= render_activity(activity, display: :i18n) %>
-      <% elsif  activity.trackable_type == "Story" %>
-        <%= render_activity(activity, display: :i18n) %>
-        "<%= activity.title %>"
-      <% else %>
-        added
-        "<%= activity.title %>"
-        <%= render_activity(activity, display: :i18n) %>
-      <% end %>
-      <% end %>
+      </div>
     </li>
   <% end %>
 </ul>

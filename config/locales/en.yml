@@ -33,7 +33,7 @@ en:
     like:
       create: 'liked the update'
     story:
-      create: 'shared an update'
+      create: 'shared the update'
       destroy: 'removed the update'
       update: 'edited the update'
   activerecord:
