@@ -29,6 +29,7 @@
       <% elsif activity.title %>
       <% if activity.trackable_type == "Like" %>
         <%= render_activity(activity, display: :i18n) %>
+        "<%= activity.title %>"
       <% elsif  activity.trackable_type == "BooksWishlist" %>
         added
         "<%= activity.title %>"

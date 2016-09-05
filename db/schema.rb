@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160903234620) do
+ActiveRecord::Schema.define(version: 20160905025614) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20160903234620) do
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "story_id"
+    t.string  "title"
   end
 
   add_index "likes", ["story_id"], name: "index_likes_on_story_id"

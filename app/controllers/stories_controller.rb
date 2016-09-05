@@ -50,7 +50,7 @@ class StoriesController < ApplicationController
 
   def like
     without_tracking do
-      @likes = Like.new(user_id: current_user.id, story_id: @story.id)
+      @likes = Like.new(user_id: current_user.id, story_id: @story.id, title: @story.title)
     end
     if @likes.save
       flash[:success] = 'Thanks for the like!'

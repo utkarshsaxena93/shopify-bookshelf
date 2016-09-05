@@ -5,7 +5,7 @@ class Like < ActiveRecord::Base
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user },
-          title: Proc.new { |controller, model| model.story_id }
+          title: Proc.new { |controller, model| model.title }
 
   def pause_tracking
     Like.public_activity_off
