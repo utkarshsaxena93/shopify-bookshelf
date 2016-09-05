@@ -11,7 +11,6 @@ ready = (event) ->
     getBookData: () ->
 
       $.get(this.$url, (data) =>
-        console.log data
         this.googleBooksData = data
         this.render()
       );

@@ -1,0 +1,76 @@
+// Site wide styles go here
+@import 'variables';
+
+// Navbar begins
+.navbar {
+  min-height: 64px;
+  border-radius: 0;
+}
+
+.navbar-slate {
+  background-color: $shopify-slate;
+  border-color: #080808;
+}
+
+.navbar-brand {
+  width: 140px;
+}
+
+.navbar-right {
+  margin-top: 8px;
+  font-size: 0.875em;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+
+  li>a {
+    color: $shopify-navbartext;
+    text-transform: uppercase;
+    &:hover, &:focus {
+      background-color: inherit;
+      color: #fff;
+    }
+  }
+}
+
+.caret {
+  border-top: 5px solid;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
+.navbar-toggle {
+  margin-top: 15px;
+  .icon-bar {
+    background-color: #fff;
+  }
+}
+
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+  color: #fff;
+  background-color: inherit;
+}
+
+.dropdown-menu {
+  background-color: #fff;
+  li>a {
+    color: $shopify-dropdowntext;
+    font-size: 0.875em;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    text-transform: uppercase;
+    &:hover, &:focus {
+      background-color: inherit;
+      color: $shopify-slate;
+    }
+  }
+}
+
+.profilelink__image--thumbnail {
+  @media screen and (max-width: 765px) {
+    margin-left: 12px;
+   }
+   &:hover {
+     border: 1px solid #c3c3c3;
+   }
+}
+// navbar ends

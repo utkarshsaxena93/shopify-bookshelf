@@ -12,6 +12,7 @@
  *= require devise_bootstrap_views
  *= require bootstrap_and_overrides
  *= require_self
+ *= require site_wide_styles
  */
 
  .profilelink__image--thumbnail {
