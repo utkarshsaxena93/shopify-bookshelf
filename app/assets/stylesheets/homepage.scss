@@ -1,0 +1,54 @@
+// Home page specific styles
+@import "variables";
+
+.statusbox__pageheading {
+  margin-top: 5px;
+}
+
+.statusbox__subheading {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.capitalize-text {
+  text-transform: capitalize;
+}
+
+.green-text {
+  color: $shopify-green;
+}
+
+.story {
+  border-bottom: 1px solid #c3c3c3;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.story__heading {
+  margin-top: 5px;
+  text-transform: capitalize;
+}
+
+.story__content {
+  font-weight: 700;
+}
+
+.story__addedBy {
+  font-style: italic;
+  font-size: 0.85em;
+  color: #c3c3c3;
+}
+
+.story__buttons {
+  font-size: 0.85em;
+}
+
+.story__buttons__likecount {
+  background-color: #c3c3c3;
+  font-size: inherit;
+  padding: 4px 6px 4px 6px;
+}
+
+.story__buttons__likebtn {
+  margin-left: 5px;
+}
