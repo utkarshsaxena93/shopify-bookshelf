@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @stories = Story.order('created_at DESC')
+    @stories = Story.limit(40).order('created_at DESC')
     @story = Story.new
   end
 
@@ -75,7 +75,7 @@ class StoriesController < ApplicationController
   end
 
   def load_activities
-    @activities = PublicActivity::Activity.order('created_at DESC').limit(20)
+    @activities = PublicActivity::Activity.limit(40).order('created_at DESC')
   end
 
   def without_tracking

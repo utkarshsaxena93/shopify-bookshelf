@@ -12,7 +12,6 @@
           <h4 class="statusbox__subheading">Share your favorite quote!</h4>
           <%= render 'form' %>
         </div>
-
       </div>
       <div class="col-lg-12">
         <% if @activities.any? %>
@@ -21,11 +20,16 @@
       </div>
     </div>
     <div class="col-lg-4">
-      <% if @stories.any? %>
-        <div class="custom-well stories-container">
-            <%= render 'list' %>
-        </div>
-      <% end %>
+      <div class="col-lg-12">
+        <% if @stories.any? %>
+          <div class="custom-well stories-container">
+              <%= render 'list' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-lg-12">
+        <%= render 'shared/inviteForm' %>
+      </div>
     </div>
   </div>
 <% end %>

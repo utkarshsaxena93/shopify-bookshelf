@@ -1,45 +1,61 @@
-<h1>User's dashboard</h1>
-<div class="well">
+<% content_for :head do %>
+  <title>User's Dashboard</title>
+  <%= stylesheet_link_tag 'dashboard', media: 'all' %>
+<% end %>
+
+<div class="dashboard">
+  <h2 class="dashboard__heading">Welcome to your dashboard.</h2>
   <div class="row">
-    <div class="col-lg-12">
-      <%= form_tag invite_user_path, method: :post, id: 'invite-user-form' do %>
-        <p><%= label_tag :email %><br />
-        <%= email_field_tag :email, nil, :required => true, placeholder: "Enter your friend's email.", class: "form-control" %></p>
-        <%= submit_tag("Send Invite", :class => 'btn btn-primary') %>
-      <% end %>
+    <div class="col-lg-6">
+      <%= render 'shared/inviteForm' %>
+    </div>
+    <div class="col-lg-6">
+      <div class="dashboard__addnewbookcontainer custom-well">
+        <%= link_to "Add a new book to Shopify Bookstore", new_book_path, class: "btn btn-success btn-lg dashboard__addnewbookcontainer__btn" %>
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-6">
-      <%= link_to "Add a new book", new_book_path, class: "btn btn-primary btn-lg" %>
-    </div>
-    <div class="col-lg-6">
-      <h4>
-        Add a new book to Shopify's Bookstore.
-      </h4>
+    <div class="col-lg-12">
+      <% if @books[0] %>
+        <div class="custom-well">
+          <%= render 'books/list', :obj => @books %>
+        </div>
+      <% end %>
     </div>
     <div class="col-lg-12">
-      You are currently reading:
-      <%= render 'books/currentlyReadingList', :obj => @user.books_readings %>
-
+      <% if @user.books_readings[0] %>
+        <div class="custom-well">
+          <%= render 'books/currentlyReadingList', :obj => @user.books_readings %>
+        </div>
+      <% end %>
     </div>
     <div class="col-lg-12">
-      <h4>Books added by you</h4>
-      <%= render 'books/list', :obj => @books %>
+      <% if @user.books_reads[0] %>
+        <div class="custom-well">
+          <%= render 'books/readList', :obj => @user.books_reads %>
+        </div>
+      <% end %>
     </div>
     <div class="col-lg-12">
-      <h4>Books you have completed reading.</h4>
-      <%= render 'books/readList', :obj => @user.books_reads %>
+      <% if @user.books_wishlists[0] %>
+        <div class="custom-well">
+          <%= render 'books/wishlist', :obj => @user.books_wishlists %>
+        </div>
+      <% end %>
     </div>
     <div class="col-lg-12">
-      <h4>Books you wish to read</h4>
-      <%= render 'books/wishlist', :obj => @user.books_wishlists %>
-    </div>
-    <div class="col-lg-12">
-      <%= link_to "DELETE ACCOUNT",
-      delete_my_account_path,
-       :data => { :confirm => "Are you sure?"},
-       class: "btn btn-danger btn-lg" %>
+      <div class="col-lg-12 custom-well text-center">
+        <div class="col-lg-6">
+          <%= link_to "DELETE ACCOUNT",
+          delete_my_account_path,
+           :data => { :confirm => "Are you sure? We are sad to see you go :("},
+           class: "btn btn-danger btn-lg" %>
+        </div>
+        <div class="col-lg-6">
+          <h4 class="text-danger">This action cannot be undone.</h4>
+        </div>
+      </div>
     </div>
   </div>
 </div>

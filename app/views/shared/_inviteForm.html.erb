@@ -1,0 +1,8 @@
+<%= form_tag invite_user_path, method: :post, id: 'invite-user-form', class: 'custom-well' do %>
+  <h4 class="dashboard__formheading">Invite your fellow <span class="shopify-green-text">Shopifolks</span></h4>
+  <div class="form-group">
+    <%= label_tag :email %>
+    <%= email_field_tag :email, nil, :required => true, placeholder: "bookgeek@shopify.com", class: "form-control" %>
+  </div>
+  <%= submit_tag("Send Invite", :class => 'btn btn-success') %>
+<% end %>

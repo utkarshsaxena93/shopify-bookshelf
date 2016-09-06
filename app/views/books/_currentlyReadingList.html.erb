@@ -1,10 +1,11 @@
-<table class="table table-striped">
+<h5 class="table__heading">Your reading list:</h5>
+<table class="table table-striped currentlyReadingList">
   <thead>
     <tr>
-      <th>ISBN</th>
-      <th>Title</th>
+      <th class="table__subheading">ISBN</th>
+      <th class="table__subheading">Title</th>
       <% if @user.id == current_user.id %>
-        <th>Actions</th>
+        <th class="table__subheading">Actions</th>
       <% end %>
     </tr>
   </thead>

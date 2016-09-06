@@ -4,6 +4,18 @@
 body {
   background-color: #e7e9ec;
 }
+
+.btn {
+  border-radius: 0;
+  font-size: 0.875em;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-lg {
+  font-size: 1em;
+}
+
 // Navbar begins
 .navbar {
   min-height: 64px;

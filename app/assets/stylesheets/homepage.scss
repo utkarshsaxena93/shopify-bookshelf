@@ -60,6 +60,9 @@
 
 .user-activity {
   padding: 40px;
+  &:nth-child(odd) {
+    background-color: #fafafa;
+  }
 }
 
 .datetime-text {

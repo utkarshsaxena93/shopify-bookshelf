@@ -1,0 +1,44 @@
+// Dashboard specific styles
+@import "variables";
+
+.dashboard__heading {
+  margin-top: 0px;
+}
+
+.dashboard__formheading {
+  margin-bottom: 15px;
+}
+
+.shopify-green-text {
+  color: $shopify-green;
+}
+
+.dashboard__addnewbookcontainer {
+  line-height: 150px;
+  text-align: center;
+}
+
+.dashboard__addnewbookcontainer__btn {
+  vertical-align: middle;
+  padding: 13px 18px;
+}
+
+.table {
+  border: 1px dotted #c3c3c3;
+}
+
+.table__heading {
+  text-transform: uppercase;
+  font-size: 0.95em;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+.table__subheading {
+  text-align: center;
+}
+
+.table, .table__heading {
+  text-align: center;
+}

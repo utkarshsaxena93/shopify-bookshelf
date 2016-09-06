@@ -1,10 +1,11 @@
+<h5 class="table__heading">Books you have finished reading:</h5>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>ISBN</th>
-      <th>Title</th>
+      <th class="table__subheading">ISBN</th>
+      <th class="table__subheading">Title</th>
       <% if @user.id == current_user.id %>
-        <th>Actions</th>
+        <th class="table__subheading">Actions</th>
       <% end %>
     </tr>
   </thead>
@@ -15,7 +16,7 @@
         <td><%= book.title %></td>
         <% if @user.id == current_user.id %>
           <td>
-            <%= link_to 'Delete', remove_from_already_read_path(book), :method => :delete,
+            <%= link_to 'Remove', remove_from_already_read_path(book), :method => :delete,
              :data => { :confirm => "Are you sure?"},
              :class => "btn btn-xs btn-danger" %>
           </td>
