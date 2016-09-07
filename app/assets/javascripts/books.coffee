@@ -3,13 +3,13 @@
 $(document).on 'ready', () ->
 
   booksData = (() ->
-    $el = $('.well')
+    $el = $('.book-container')
     bookIDs = []
 
     _render = (id, info) ->
-      $(".#{id}__image").text(info.imageLinks.thumbnail)
-      $(".#{id}__link").text(info.previewLink)
-      $(".#{id}__description").text(info.description)
+      $(".#{id}__image").attr('src', info.imageLinks.thumbnail)
+      $(".#{id}__linktag").attr('href', info.previewLink)
+      $(".#{id}__description").html(info.description)
       $(".#{id}__authors").text(if info.authors then info.authors.join(','))
       $(".#{id}__publishedDate").text(info.publishedDate)
       $(".#{id}__publisher").text(info.publisher)
@@ -40,13 +40,16 @@ $(document).on 'ready', () ->
     $elBtn = $('.add-book-to-list-btn')
 
     _render = (target, success) ->
+      bookid = $(target).parents('ul').data('bookid');
+      $notificationContainer = $(".notifications-#{bookid}")
       if success
         $(target).parent('li').addClass('bg-success')
         $el.children('li').addClass('disabled')
-        $elBtn.append($("<h3></h3>").text("Success."))
+        $notificationContainer.append($("<p class='bg-success'></p>").html("Successfully added to the list. Go to your <a href='/dashboard'>dashboard</a> to manage your lists."))
+        return
       else
-        $elBtn.append($("<h3></h3>").text("Failed."))
-
+        $notificationContainer.append($("<p class='bg-danger'></p>").html("Failed to add to the list. Please try again. Go to your <a href='/dashboard'>dashboard</a> to manage your lists."))
+        return
     _getBookID = (selector) ->
       $(selector).closest('.dropdown-menu').attr('data-bookid')
 

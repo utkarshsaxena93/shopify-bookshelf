@@ -1,44 +1,60 @@
 <%- model_class = Book -%>
+
+<% content_for :head do %>
+  <%= stylesheet_link_tag "books", :media => "all" %>
+<% end %>
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
-<div id="book" class="well" data-googleurl="https://www.googleapis.com/books/v1/volumes/<%= @book.googleid %>">
-  <p>ISBN</p>
-  <%= @book.isbn %>
-  <p>Category</p>
-  <%= @book.category %>
-  <p>Title</p>
-  <a href="https://books.google.ca/books?id=<%= @book.googleid %>&hl=&source=gbs_api" target="_blank"><%= @book.title %></a>
-  <p>Image</p>
-  <span class="book__image"></span>
-  <p>Google link</p>
-  <span class="book__link"></span>
-  <p>Description</p>
-  <span class="book__description"></span>
-  <p>Added by</p>
-  <span class="book__addedby"><%= @book.user.name %></span>
-  <p>Other Info</p>
-  <p class="book__authors"></p>
-  <p class="book__publishedDate"></p>
-  <p class="book__publisher"></p>
-  <h4>
-    <span class="book__avgRating"></span>
-  </h4>
-  <span class="book__totalRatings"></span>
 
-
-
-<% if current_user == @book.user %>
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-                books_path, :class => 'btn btn-default'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                edit_book_path(@book), :class => 'btn btn-default' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                book_path(@book),
-                :method => 'delete',
-                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                :class => 'btn btn-danger' %>
-<% end %>
+<div id="book" class="custom-well book-container" data-googleurl="https://www.googleapis.com/books/v1/volumes/<%= @book.googleid %>">
+  <div class="row">
+    <div class="col-lg-12">
+      <a href="#" target="_blank" class="book__linktag">
+        <h3 class="book__title"><%= @book.title %></h3>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">
+      <img src="" class="book__image" >
+    </div>
+    <div class="col-lg-10 book-info">
+      <h5>Publisher: <span class="book__publisher"></span></h5>
+      <h5>Published Date: <span class="book__publishedDate"></span></h5>
+      <h5>Category: <span><%= @book.category %></span></h5>
+      <h5>Written by: <span class="book__authors"></span></h5>
+      <h5>ISBN: <span><%= @book.isbn %></span></h5>
+      <h5>Average Rating (from <span class="book__totalRatings"></span> ratings): <span class="book__avgRating"></span><h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <p class="book__description"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <h5 class="">Added by: <a href="/users/<%= @book.user.id %>"><span class="book__addedby"><%= @book.user.name %></span></a></h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <% if current_user == @book.user %>
+        <%= link_to t('.back', :default => t("helpers.links.back")),
+                      books_path, :class => 'btn btn-default'  %>
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_book_path(@book), :class => 'btn btn-default' %>
+        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      book_path(@book),
+                      :method => 'delete',
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-danger' %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <% content_for :scripts do %>
   <%= javascript_include_tag 'showBook' %>

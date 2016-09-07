@@ -18,9 +18,9 @@ ready = (event) ->
     render: () ->
       volumeInfo = this.googleBooksData.volumeInfo
 
-      $(".book__image").text(volumeInfo.imageLinks.thumbnail)
-      $(".book__link").text(volumeInfo.previewLink)
-      $(".book__description").text(volumeInfo.description)
+      $(".book__image").attr('src', volumeInfo.imageLinks.thumbnail)
+      $(".book__linktag").attr('href', volumeInfo.previewLink)
+      $(".book__description").html(volumeInfo.description)
       $(".book__authors").text(if volumeInfo.authors then volumeInfo.authors.join(','))
       $(".book__publishedDate").text(volumeInfo.publishedDate)
       $(".book__publisher").text(volumeInfo.publisher)
