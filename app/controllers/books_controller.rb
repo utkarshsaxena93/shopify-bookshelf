@@ -8,9 +8,9 @@ class BooksController < ApplicationController
     @categories = Book.pluck(:category).uniq
 
     if current_user
-      @userReadList = current_user.books_reads.select(:id).map{ |elem| elem.id }
-      @userWishList = current_user.books_wishlists.select(:id).map{ |elem| elem.id }
-      @userReadingList = current_user.books_readings.select(:id).map{ |elem| elem.id }
+      @userReadList = current_user.books_reads.select(:isbn).map{ |elem| elem }
+      @userWishList = current_user.books_wishlists.select(:isbn).map{ |elem| elem.isbn }
+      @userReadingList = current_user.books_readings.select(:isbn).map{ |elem| elem.isbn }
     end
 
     if params[:category] == "All" or params[:category] == nil
@@ -88,7 +88,7 @@ class BooksController < ApplicationController
   def addToCurrentlyReading
     book = Book.find(params[:bookid].to_i)
     book.user = current_user
-    @currentlyreadinglist = BooksReading.new(book.attributes)
+    @currentlyreadinglist = BooksReading.new(book.attributes.except("id", "location"))
     respond_to do |format|
       if @currentlyreadinglist.save
         format.json { render json: {success: true}}
@@ -106,7 +106,7 @@ class BooksController < ApplicationController
 
     book = Book.find(params[:id].to_i)
     book.user = current_user
-    @booksread = BooksRead.new(book.attributes)
+    @booksread = BooksRead.new(book.attributes.except("id", "location"))
 
     respond_to do |format|
       if @booksread.save
@@ -121,7 +121,7 @@ class BooksController < ApplicationController
   def addToWishList
     book = Book.find(params[:bookid].to_i)
     book.user = current_user
-    @wishlist = BooksWishlist.new(book.attributes)
+    @wishlist = BooksWishlist.new(book.attributes.except("id", "location"))
     respond_to do |format|
       if @wishlist.save
         format.json { render json: {success: true}}
@@ -145,7 +145,7 @@ class BooksController < ApplicationController
   def addToAlreadyRead
     book = Book.find(params[:bookid].to_i)
     book.user = current_user
-    @alreadyReadList = BooksRead.new(book.attributes)
+    @alreadyReadList = BooksRead.new(book.attributes.except("id", "location"))
     respond_to do |format|
       if @alreadyReadList.save
         format.json { render json: {success: true}}

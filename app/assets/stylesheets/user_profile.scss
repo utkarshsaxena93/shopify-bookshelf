@@ -1,0 +1,18 @@
+// User profile page specific styles.
+@import 'dashboard';
+
+.userprofile-headings {
+  margin: 10px 0;
+  display: inline-block;
+  font-size: 1em;
+
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+}
+
+.userprofile-span {
+  font-style: italic;
+  font-weight: 700;
+  margin-left: 10px;
+}

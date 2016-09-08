@@ -19,6 +19,7 @@
     <div class="col-lg-12">
       <% if @books[0] %>
         <div class="custom-well">
+          <h5 class="table__heading">Your Bookshelf:</h5>
           <%= render 'books/list', :obj => @books %>
         </div>
       <% end %>
