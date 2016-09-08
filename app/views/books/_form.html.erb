@@ -16,6 +16,12 @@
           <%= text_field_tag 'Title', nil, :class => 'form-control query-title', placeholder: "Search by title" %>
         </div>
       </div>
+      <div class="form-group form-group-location">
+        <%= label_tag 'Where is the book located?', nil, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-10">
+          <%= f.text_field :location, class: 'form-control', required: true, placeholder: "Floor of the building followed by the directions to the bookshelf." %>
+        </div>
+      </div>
       <%= f.hidden_field :isbn, bind: "isbn" %>
       <%= f.hidden_field :title, bind: "title" %>
       <%= f.hidden_field :googleid, bind: "id" %>

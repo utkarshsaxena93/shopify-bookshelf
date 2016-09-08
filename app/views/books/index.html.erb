@@ -46,7 +46,6 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="notifications-<%= book.id %>">
-
           </div>
         </div>
       </div>
@@ -62,12 +61,13 @@
           <img src="" class="book-<%= book.id %>__image book__image" >
         </div>
         <div class="col-lg-10 book-info">
-          <h5>Publisher: <span class="book-<%= book.id %>__publisher"></span></h5>
-          <h5>Published Date: <span class="book-<%= book.id %>__publishedDate"></span></h5>
-          <h5>Category: <span><%= book.category %></span></h5>
-          <h5>Written by: <span class="book-<%= book.id %>__authors"></span></h5>
-          <h5>ISBN: <span><%= book.isbn %></span></h5>
-          <h5>Average Rating (from <span class="book-<%= book.id %>__totalRatings"></span> ratings): <span class="book-<%= book.id %>__avgRating"></span><h5>
+          <h5 class="book-info-h5 no-top-margin">Publisher: <span class="book-info-span book-<%= book.id %>__publisher"></span></h5>
+          <h5 class="book-info-h5">Published Date: <span class="book-info-span book-<%= book.id %>__publishedDate"></span></h5>
+          <h5 class="book-info-h5">Category: <span class="book-info-span"><%= book.category %></span></h5>
+          <h5 class="book-info-h5">Written by: <span class="book-info-span book-<%= book.id %>__authors"></span></h5>
+          <h5 class="book-info-h5">ISBN: <span class="book-info-span"><%= book.isbn %></span></h5>
+          <h5 class="book-info-h5">Average Rating (from <span class="book-info-span book-<%= book.id %>__totalRatings"></span> ratings): <span class="book-<%= book.id %>__avgRating"></span><h5>
+          <h5 class="book-info-h5">Location: <span class="book-info-span"><%= book.location %></span></h5>
         </div>
       </div>
       <div class="row">

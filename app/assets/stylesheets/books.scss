@@ -30,12 +30,16 @@
   text-transform: capitalize;
 }
 
-.book-info {
-  h5 {
-    font-style: italic;
-    margin: 15px 0;
-  }
-  span {
-    font-weight: 700;
-  }
+
+.book-info-h5 {
+  font-style: italic;
+  margin: 15px 0;
+}
+
+.no-top-margin {
+  margin-top: 0;
+}
+
+.book-info-span {
+  font-weight: 700;
 }
