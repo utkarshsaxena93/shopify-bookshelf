@@ -1,6 +1,9 @@
 // Home page specific styles
 @import "variables";
 
+label {
+  text-transform: capitalize;
+}
 .statusbox__pageheading {
   margin-top: 5px;
 }
