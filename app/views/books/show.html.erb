@@ -4,10 +4,6 @@
   <%= stylesheet_link_tag "books", :media => "all" %>
 <% end %>
 
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
-
 <div id="book" class="custom-well book-container" data-googleurl="https://www.googleapis.com/books/v1/volumes/<%= @book.googleid %>">
   <div class="row">
     <div class="col-lg-12">
@@ -44,8 +40,6 @@
       <% if current_user == @book.user %>
         <%= link_to t('.back', :default => t("helpers.links.back")),
                       books_path, :class => 'btn btn-default'  %>
-        <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_book_path(@book), :class => 'btn btn-default' %>
         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       book_path(@book),
                       :method => 'delete',

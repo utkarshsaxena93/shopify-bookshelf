@@ -15,6 +15,7 @@ ready = (event) ->
       this.$queryTitle = $('.query-title')
       this.$container = $('.form-group-isbn')
       this.$submitButton = $('.submit-btn')
+      this.$resultContainer = $('.gbData__container')
 
     bindEvents: () ->
 
@@ -71,7 +72,9 @@ ready = (event) ->
         publishedDate : volumeInfo.publishedDate
         publisher : volumeInfo.publiser
         totalRatings : volumeInfo.ratingsCount
-        avgRating: volumeInfo.averageRating
+        avgRating: "#{volumeInfo.averageRating}/5"
+
+      this.$resultContainer.css("opacity","1");
 
       $ =>
         Twine.reset(context.newBookInfo).bind().refresh()

@@ -1,13 +1,17 @@
-<div class="gbData">
-  <img class="gbData__thumbnailImage" width="200" />
-  <a  bind-href="googleLink" target="_blank"><h4 bind="title"></h4></a>
-  <p bind="description"></p>
-  <span bind="categories"></span>
-  <p bind="authors"></p>
-  <p bind="publishedDate"></p>
-  <p bind="publisher"></p>
-  <h4>
-    <span bind="avgRating"></span>/5
-  </h4>
-  <span bind="totalRatings"></span>
+<div class="row gbData__container">
+  <div class="col-lg-12 custom-well">
+    <div class="gbData">
+      <img class="gbData__thumbnailImage" width="200" />
+      <a  bind-href="googleLink" target="_blank"><h4 bind="title"></h4></a>
+      <p bind="description"></p>
+      <span bind="categories"></span>
+      <p bind="authors"></p>
+      <p bind="publishedDate"></p>
+      <p bind="publisher"></p>
+      <h4>
+        <span bind="avgRating"></span>
+      </h4>
+      <span bind="totalRatings"></span>
+    </div>
+  </div>
 </div>

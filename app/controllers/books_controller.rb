@@ -45,11 +45,14 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
+    @bookAlreadyExists = Book.exists?(isbn: book_params["isbn"].to_i)
     @book = Book.new(book_params)
     @book.user = current_user
-
+    
     respond_to do |format|
-      if @book.save
+      if  @bookAlreadyExists
+        format.html { redirect_to new_book_path, alert: 'Book with this ISBN already exists in the bookshelf.' }
+      elsif @book.save
         format.html { redirect_to user_dashboard_path, notice: 'Book was successfully added.' }
         format.json { render :show, status: :created, location: @book }
       else
