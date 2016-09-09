@@ -1,12 +1,12 @@
 <%= form_for @story do |f| %>
   <%= render 'shared/errors', obj: @story %>
   <div class="form-group">
-    <%= f.label 'Name of the book' %>
+    <%= f.label 'Name of the book:' %>
     <%= f.text_field :title, class: 'form-control', required: true %>
   </div>
 
   <div class="form-group">
-    <%= f.label 'Quote' %>
+    <%= f.label 'Recommendation:' %>
     <%= f.text_area :body, class: 'form-control', required: true, cols: 3 %>
   </div>
 

@@ -1,33 +1,42 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "allUsers", :media => "all" %>
+<% end %>
 <h1>View all users page.</h1>
+<div align="center">
+    <%= will_paginate %>
+</div>
 <div class="container">
   <div class="row">
     <% @users.each do |user| %>
-      <div class="col-sm-6 col-lg-4" data-userid="<%= user.id %>">
-      <div class="thumbnail">
+      <div class="col-sm-6 col-lg-4 text-center" data-userid="<%= user.id %>">
+      <div class="custom-well">
         <%= image_tag("https://www.gravatar.com/avatar/#{user.gravitarhash}?d=retro") %>
         <div class="caption">
           <h3><%= user.name %></h3>
-          <p>
+          <p class='text-italic'>
              <% if !user.books_readings.empty? %>
              Currently reading:
-               <%= user.books_readings.map{|book| book.title}.join(",") %>
+               <span class='text-bold'><%= user.books_readings.map{|book| book.title}.join(",") %></span>
              <% end %>
           </p>
-          <p>
-             Number of book(s) read: <%= user.books_reads.count %>
+          <p class='text-italic'>
+             Number of book(s) read: <span class='text-bold'><%= user.books_reads.count %></span>
           </p>
-          <p>
-             Books on WishList: <%= user.books_wishlists.count %>
+          <p class='text-italic'>
+             Books on WishList: <span class='text-bold'><%= user.books_wishlists.count %></span>
           </p>
-          <p>
-             Number of book(s) contributed to Shopify Bookshelf: <%= user.books.count %>
+          <p class='text-italic'>
+             Number of book(s) contributed to Shopify Bookshelf: <span class='text-bold'><%= user.books.count %></span>
           </p>
-          <p>
-            <%= link_to 'View Profile', user_path(user), :class => 'btn btn-primary' %>
+          <p class='text-italic'>
+            <%= link_to 'VIEW PROFILE', user_path(user), :class => 'btn btn-primary' %>
           </p>
         </div>
       </div>
     </div>
     <% end %>
   </div>
+</div>
+<div align="center">
+    <%= will_paginate %>
 </div>
