@@ -13,6 +13,6 @@ Rails.application.config.assets.version = '1.0'
   Rails.application.config.assets.precompile += ["#{scripts}.js.coffee"]
 end
 
-%w( homepage books dashboard user_profile newBook allUsers).each do |stylesheets|
+%w( homepage books dashboard user_profile newBook allUsers storypage).each do |stylesheets|
   Rails.application.config.assets.precompile += ["#{stylesheets}.css"]
 end

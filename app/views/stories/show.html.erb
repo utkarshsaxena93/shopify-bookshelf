@@ -1,22 +1,23 @@
 <% content_for :head do %>
   <title><%= @story.title %></title>
+  <%= stylesheet_link_tag 'storypage', media: 'all' %>
 <% end %>
 
+<div class="custom-well">
+  <h1><a href="https://www.google.com/search?tbm=bks&q=<%= @story.title %>" target="_blank"><%= @story.title %></a></h1>
+  <p class="story__body">
+    <%= @story.body %>
+  </p>
+  <p class="story__likes">
+    <span class="label label-default story__likes_count"><%= pluralize(@story.likes.count, 'like') %></span>
+    <%= link_to content_tag(:span, '', class: 'fa fa-thumbs-o-up') + ' Like it',
+                 like_story_path(@story), class: 'story__likes_btn', method: :post, disabled: (if @story.likes[0] then @story.likes[0].user_id == current_user.id end) %>
+  </p>
 
-<h1><a href="https://www.google.com/search?tbm=bks&q=<%= @story.title %>" target="_blank"><%= @story.title %></a></h1>
-<p>
-  <%= @story.body %>
-</p>
-<p>
-  <span class="label label-default"><%= pluralize(@story.likes.count, 'like') %></span>
-  <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-thumbs-up') + ' Like it',
-               like_story_path(@story), class: 'btn btn-default btn-sm', method: :post, disabled: (if @story.likes[0] then @story.likes[0].user_id == current_user.id end) %>
-</p>
-
-<div class="btn-group">
-  <%= link_to 'Edit', edit_story_path(@story), class: 'btn btn-info' %>
-  <%= link_to 'Delete', story_path(@story), data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger' %>
+  <% if @story.user == current_user %>
+    <div class="btn-group story__actions">
+      <%= link_to 'Edit', edit_story_path(@story), class: 'label label-primary' %>
+      <%= link_to 'Delete', story_path(@story), data: {confirm: 'Are you sure?'}, method: :delete, class: 'label label-danger' %>
+    </div>
+  <% end %>
 </div>
-
-<% content_for :scripts do %>
-<% end %>
