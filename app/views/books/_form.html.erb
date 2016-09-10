@@ -15,9 +15,9 @@
     </div>
   </div>
   <div class="form-group form-group-location">
-    <%= label_tag 'Where is the book located?', nil, :class => 'control-label col-lg-2' %>
+    <%= label_tag 'Where is the book located or how to obtain the book?', nil, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :location, class: 'form-control', required: true, placeholder: "Floor of the building followed by the directions to the bookshelf." %>
+      <%= f.text_field :location, class: 'form-control', required: true, placeholder: "Floor of the building followed by the directions to the bookshelf or your email you own the book." %>
     </div>
   </div>
   <%= f.hidden_field :isbn, bind: "isbn" %>
