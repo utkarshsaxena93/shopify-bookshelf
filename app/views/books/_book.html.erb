@@ -9,11 +9,11 @@
     <div class="row">
       <div class="col-lg-9">
         <a href="/books/<%= book.id %>" class="book-<%= book.id %>__linktag">
-          <h3 class="book__title"><%= book.title %></h3>
+          <h3 class="book__title book-<%= book.id %>__title"><%= book.title %></h3>
         </a>
       </div>
       <div class="col-lg-3">
-        <button type="button" class="btn btn-success btn-small btn-recommendation book-<%= book.id %>__addRecommendation">
+        <button type="button" class="btn btn-success btn-small btn-recommendation book-<%= book.id %>__addRecommendation" data-bookid="<%= book.id %>" data-target="#modal">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add a recommendation
         </button>
       </div>

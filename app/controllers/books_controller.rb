@@ -170,16 +170,22 @@ class BooksController < ApplicationController
   end
 
   def addRecommendation
-    byebug
     book = Book.find(params[:bookid].to_i)
+    userids = book.recommendation.map{ |elem| elem.user_id }
+    canUseAddRecommendation = !userids.include?(current_user.id)
     book.recommendation.new(user_id: current_user.id, user_recommendation: params[:recommendation])
-    respond_to do |format|
-      if book.save
-        format.json { render json: {success: true}}
-      else
-        format.json { render json: {success: false}}
+    without_tracking(Book) do
+      respond_to do |format|
+        if canUseAddRecommendation and book.save
+          format.json { render json: {success: true}}
+        else
+          format.json { render json: {success: false}}
+        end
       end
     end
+  end
+
+  def deleteRecommendation
   end
 
   private

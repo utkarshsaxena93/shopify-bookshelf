@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   # About Page
   get '/about' => 'welcome#index'
 
+  # Add recommendation
+  post '/addrecommendation' => 'books#addRecommendation'
+  get '/deleterecommendation' => 'books#deleteRecommendation'
+
   # Route for Stories
   resources :stories, except: [:index] do
     member do
