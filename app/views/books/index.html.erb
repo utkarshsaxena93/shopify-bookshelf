@@ -41,64 +41,7 @@
   <div align="center">
       <%= will_paginate %>
   </div>
-  <% @books.each do |book, index| %>
-    <div id="book-<%= book.id %>" class="custom-well book-container" data-googleLink="<%= book.apiLink %>">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="notifications-<%= book.id %>">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <a href="#" target="_blank" class="book-<%= book.id %>__linktag">
-            <h3 class="book__title"><%= book.title %></h3>
-          </a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-2">
-          <img src="" class="book-<%= book.id %>__image book__image" >
-        </div>
-        <div class="col-lg-10 book-info">
-          <h5 class="book-info-h5 no-top-margin">Publisher: <span class="book-info-span book-<%= book.id %>__publisher"></span></h5>
-          <h5 class="book-info-h5">Published Date: <span class="book-info-span book-<%= book.id %>__publishedDate"></span></h5>
-          <h5 class="book-info-h5">Category: <span class="book-info-span"><%= book.category %></span></h5>
-          <h5 class="book-info-h5">Written by: <span class="book-info-span book-<%= book.id %>__authors"></span></h5>
-          <h5 class="book-info-h5">ISBN: <span class="book-info-span"><%= book.isbn %></span></h5>
-          <h5 class="book-info-h5">Average Rating (from <span class="book-info-span book-<%= book.id %>__totalRatings"></span> ratings): <span class="book-<%= book.id %>__avgRating"></span><h5>
-          <h5 class="book-info-h5">How to obtain the book: <span class="book-info-span"><%= book.location %></span></h5>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <p class="book-<%= book.id %>__description book__description"></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <% if book.user %>
-            <h5 class="">Added by:
-              <a href="/users/<%= book.user.id %>"><span class="book-<%= book.id %>__addedby book__addedby"><%= book.user.name %></span></a>
-            </h5>
-          <% end %>
-        </div>
-      </div>
-      <% if current_user %>
-        <div class="book-<%= book.id %>__dropdown dropdown">
-          <button class="btn btn-primary dropdown-toggle add-book-to-list-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Add to list
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu add-book-to-list-dropdown" data-bookid="<%= book.id %>" aria-labelledby="add-book-to-list-dropdown" data-bookid="<%= book.id %>">
-            <li class="<%= 'disabled' if @userReadingList.include?(book.isbn) or @userWishList.include?(book.id) %> <%= 'disabled bg-success' if @userReadList.include?(book.isbn) %>"><%= link_to 'Read', add_to_read_path, class: 'add-to-read' %></li>
-            <li class="<%= 'disabled' if @userReadList.include?(book.isbn) or @userWishList.include?(book.id) %> <%= 'disabled bg-success' if @userReadingList.include?(book.isbn) %>"><%= link_to 'Currently Reading', add_to_currently_reading_path, class: 'add-to-currently-reading' %></li>
-            <li class="<%= 'disabled' if @userReadingList.include?(book.isbn) or @userReadList.include?(book.id) %> <%= 'disabled bg-success' if @userWishList.include?(book.isbn) %>"><%= link_to 'Wishlist', add_to_wish_list_path, class: 'add-to-wish-list' %></li>
-          </ul>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render 'book', :obj => @books %>
   <div align="center">
       <%= will_paginate %>
   </div>

@@ -48,7 +48,7 @@ class BooksController < ApplicationController
     @bookAlreadyExists = Book.exists?(isbn: book_params["isbn"].to_i)
     @book = Book.new(book_params)
     @book.user = current_user
-    
+
     respond_to do |format|
       if  @bookAlreadyExists
         format.html { redirect_to new_book_path, alert: 'Book with this ISBN already exists in the bookshelf.' }
@@ -166,6 +166,19 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to user_dashboard_path, notice: 'Book was successfully deleted.' }
       format.json { head :no_content }
+    end
+  end
+
+  def addRecommendation
+    byebug
+    book = Book.find(params[:bookid].to_i)
+    book.recommendation.new(user_id: current_user.id, user_recommendation: params[:recommendation])
+    respond_to do |format|
+      if book.save
+        format.json { render json: {success: true}}
+      else
+        format.json { render json: {success: false}}
+      end
     end
   end
 
