@@ -9,6 +9,7 @@
     </div>
     <div class="col-lg-11">
       <h5 class="userprofile-headings">Name:</h5><span class="userprofile-span"><%= @user.name %></span><br />
+      <h5 class="userprofile-headings">Position:</h5><span class="userprofile-span"><%= @user.position %></span><br />
       <h5 class="userprofile-headings">Email:</h5><span class="userprofile-span"><a href="mailto:<%= @user.email %>?Subject=Hello!" target="_blank"><%= @user.email %></a></span><br />
       <% if !@user.books_readings.empty? %>
         <h5 class="userprofile-headings">Currently Reading:</h5><span class="userprofile-span"><%= @user.books_readings.map{|book| book.title}.join(",") %></span>

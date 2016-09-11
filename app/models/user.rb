@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   before_destroy :delete_activities
 
   validates :name, presence: true, on: :create
+  validates :position, presence: true, on: :create
   has_many :books
   has_many :books_readings, dependent: :destroy
   has_many :books_reads, dependent: :destroy

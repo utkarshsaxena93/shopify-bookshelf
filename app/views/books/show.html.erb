@@ -62,7 +62,8 @@
             <p class="recommendation__text">
               "<%= post.user_recommendation %>"
             </p>
-            <h5 class="recommendation__user">- <%= link_to User.find(post.user_id).name, user_path(post.user_id) %></h5>
+            <% @owner = User.find(post.user_id) %>
+            <h5 class="recommendation__user">- <%= link_to @owner.name, user_path(post.user_id) %> - <%= @owner.position %> </h5>
           </li>
           <% end %>
         </ul>

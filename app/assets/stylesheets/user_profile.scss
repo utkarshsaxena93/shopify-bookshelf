@@ -15,4 +15,9 @@
   font-style: italic;
   font-weight: 700;
   margin-left: 10px;
+  text-transform: capitalize;
+
+  a {
+    text-transform: none;
+  }
 }
