@@ -7,9 +7,25 @@
 <div id="book" class="custom-well book-container" data-googleurl="https://www.googleapis.com/books/v1/volumes/<%= @book.googleid %>">
   <div class="row">
     <div class="col-lg-12">
+      <div class="notifications-<%= @book.id %>">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-9">
       <a href="#" target="_blank" class="book__linktag">
         <h3 class="book__title"><%= @book.title %></h3>
+        <% if @book.recommendation.any? %>
+          <span class="label label-default recommended-label"><i class="fa fa-star" aria-hidden="true"></i> Recommended</span>
+        <% end %>
       </a>
+    </div>
+    <div class="col-lg-3">
+      <% if !@book.recommendation.map{|elem| elem.user_id}.include?(current_user.id) %>
+      <button type="button" class="btn btn-success btn-small btn-recommendation book-<%= @book.id %>__addRecommendation" data-bookid="<%= @book.id %>" data-target="#modal">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add a recommendation
+      </button>
+      <% end %>
     </div>
   </div>
   <div class="row">
@@ -35,6 +51,25 @@
       <h5 class="">Added by: <a href="/users/<%= @book.user.id %>"><span class="book__addedby"><%= @book.user.name %></span></a></h5>
     </div>
   </div>
+
+  <% if @book.recommendation.any? %>
+    <div class="row">
+      <div class="col-lg-12">
+        <h4>Recommendations:</h4>
+        <ul class="list-group">
+          <% @book.recommendation.order('id DESC').each do |post| %>
+          <li class="list-group-item">
+            <p class="recommendation__text">
+              "<%= post.user_recommendation %>"
+            </p>
+            <h5 class="recommendation__user">- <%= link_to User.find(post.user_id).name, user_path(post.user_id) %></h5>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row">
     <div class="col-lg-12">
       <% if current_user == @book.user %>
@@ -49,6 +84,8 @@
     </div>
   </div>
 </div>
+
+<%= render 'recommendationmodal' %>
 
 <% content_for :scripts do %>
   <%= javascript_include_tag 'showBook' %>

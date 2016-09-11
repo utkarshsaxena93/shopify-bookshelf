@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   # Add recommendation
   post '/addrecommendation' => 'books#addRecommendation'
-  get '/deleterecommendation' => 'books#deleteRecommendation'
+  match '/deleterecommendation' => 'books#deleteRecommendation', :via => :delete, :as => :delete_recommendation
 
   # Route for Stories
   resources :stories, except: [:index] do

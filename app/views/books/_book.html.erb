@@ -10,12 +10,17 @@
       <div class="col-lg-9">
         <a href="/books/<%= book.id %>" class="book-<%= book.id %>__linktag">
           <h3 class="book__title book-<%= book.id %>__title"><%= book.title %></h3>
+          <% if book.recommendation.any? %>
+            <span class="label label-default recommended-label"><i class="fa fa-star" aria-hidden="true"></i> Recommended</span>
+          <% end %>
         </a>
       </div>
       <div class="col-lg-3">
+        <% if !book.recommendation.map{|elem| elem.user_id}.include?(current_user.id) %>
         <button type="button" class="btn btn-success btn-small btn-recommendation book-<%= book.id %>__addRecommendation" data-bookid="<%= book.id %>" data-target="#modal">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add a recommendation
         </button>
+        <% end %>
       </div>
     </div>
     <div class="row">

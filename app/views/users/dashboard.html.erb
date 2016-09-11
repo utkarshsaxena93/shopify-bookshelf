@@ -46,6 +46,13 @@
       <% end %>
     </div>
     <div class="col-lg-12">
+      <% if @userRecommendations.any? %>
+        <div class="custom-well">
+          <%= render 'recommendationslist', :obj => @userRecommendations %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-lg-12">
       <div class="col-lg-12 custom-well text-center">
         <div class="col-lg-6">
           <%= link_to "DELETE ACCOUNT",

@@ -186,6 +186,18 @@ class BooksController < ApplicationController
   end
 
   def deleteRecommendation
+    without_tracking(Recommendation) do
+      recommendation = Recommendation.find(params[:id])
+      respond_to do |format|
+        if recommendation.destroy
+          format.html { redirect_to user_dashboard_path, notice: 'Recommendation was successfully deleted.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to user_dashboard_path, alert: 'Failed to delete the recommendation. Please try again.' }
+          format.json { head :no_content }
+        end
+      end
+    end
   end
 
   private

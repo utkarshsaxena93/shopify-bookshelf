@@ -7,7 +7,7 @@
           <% if current_user == activity.owner %>
             <strong><%= link_to "You", user_path(User.where(email: activity.owner.email)[0].id) %></strong>
           <% else %>
-            <strong><%= link_to activity.owner.name, user_path(User.where(email: activity.owner.email)[0].id) %></strong>
+            <strong class="owner-name"><%= link_to activity.owner.name, user_path(User.where(email: activity.owner.email)[0].id) %></strong>
           <% end %>
         <% end %>
         <% if activity.trackable %>

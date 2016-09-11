@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   def dashboard
     @user = current_user
     @books = @user.books
+    @userRecommendations = Recommendation.where("user_id": current_user.id)
   end
 
   def destroy
