@@ -49,7 +49,7 @@ ready = (event) ->
 
     getInformation: (queryParam) ->
 
-      $.get(this.googleBooksURL, { q : queryParam, maxResults: 1, key: "AIzaSyBnj2IuHkR0a5wFBDb7qVxjMa8Ly8zL_Oc" }, (data) =>
+      $.get(this.googleBooksURL, { q : queryParam, maxResults: 1, key: "AIzaSyBYfDjMf5wBQzxVxwhZYTlBOynml-eGdkE" }, (data) =>
         if data.items and this.updateBookData(data)
           this.googleBooksData = data.items
           this.render()

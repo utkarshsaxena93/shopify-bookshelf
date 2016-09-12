@@ -19,7 +19,7 @@ $(document).on 'ready', () ->
     _getGBdata = (item, index) ->
       bookID = item.id
       gbURL = item.url
-      $.get(gbURL, { key: "AIzaSyBnj2IuHkR0a5wFBDb7qVxjMa8Ly8zL_Oc" }, (result) =>
+      $.get(gbURL, { key: "AIzaSyBYfDjMf5wBQzxVxwhZYTlBOynml-eGdkE" }, (result) =>
         if result then _render(bookID, result.volumeInfo)
     );
 
