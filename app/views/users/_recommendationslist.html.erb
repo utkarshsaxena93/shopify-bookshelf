@@ -11,8 +11,9 @@
   </thead>
   <tbody>
     <% obj.each do |recommendation| %>
+      <% @book = Book.find(recommendation.book_id) %>
       <tr>
-        <td><%= Book.find(recommendation.book_id).title %></td>
+        <td><%= link_to @book.title, book_path(@book) %></td>
         <td>"<%= recommendation.user_recommendation %>"</td>
         <% if @user.id == current_user.id %>
           <td>
