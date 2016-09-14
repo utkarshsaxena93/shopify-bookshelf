@@ -4,34 +4,9 @@
 <% end %>
 
 <% if current_user %>
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="col-lg-12">
-        <div class="custom-well statusbox">
-          <h2 class="statusbox__pageheading">Hello <span class="capitalize-text"><%= current_user.name.split[0] %></span>! Welcome to <span class="capitalize-text green-text">Shopify's Bookshelf</span></h2>
-          <h4 class="statusbox__subheading">Share a quote or anything new you learned from a book!</h4>
-          <%= render 'form' %>
-        </div>
-      </div>
-      <div class="col-lg-12">
-        <% if @activities.any? %>
-          <%= render 'shared/activities' %>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="col-lg-12">
-        <% if @stories.any? %>
-          <div class="custom-well stories-container">
-              <%= render 'list' %>
-          </div>
-        <% end %>
-      </div>
-      <div class="col-lg-12">
-        <%= render 'shared/inviteForm' %>
-      </div>
-    </div>
-  </div>
+  <%= render 'loggedInIndex' %>
+<% else %>
+  <%= render 'loggedOutIndex' %>
 <% end %>
 
 <% content_for :scripts do %>

@@ -16,10 +16,10 @@
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li><%= link_to "Browse Users", show_all_users_path %></li>
-          <li><%= link_to "Browse Books", books_path %></li>
+          <li><%= link_to "Browse Bookshelf", books_path %></li>
         <% else %>
           <li><%= link_to "About", about_path %></li>
-          <li><%= link_to "Browse Books", books_path %></li>
+          <li><%= link_to "Browse Bookshelf", books_path %></li>
         <% end %>
         <% if current_user %>
         <li>

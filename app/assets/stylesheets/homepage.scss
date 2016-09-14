@@ -1,6 +1,31 @@
 // Home page specific styles
 @import "variables";
 
+.book-count {
+  font-weight: bold;
+  font-style: italic;
+  font-size: 30px;
+}
+.container .jumbotron {
+  border-radius: 0;
+}
+
+.jumbotron {
+  background: white image-url("header-image-1.jpg") no-repeat center center;
+  height: 60vh;
+}
+
+.jumbotron p {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.jumbotron-text {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  margin-top: 5vh;
+}
+
 label {
   text-transform: capitalize;
 }
