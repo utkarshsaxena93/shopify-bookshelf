@@ -32,14 +32,13 @@ class UsersController < ApplicationController
     userEmail = params[:email]
     userExists = User.where(email: userEmail)
     invitationAccepted = userExists.pluck(:invitation_accepted_at)
-    byebug
 
     if userExists.empty?
       if userEmail.include? "@shopify.com"
         User.invite!({:email => userEmail}, current_user)
-        redirect_to user_dashboard_path, notice: "Invitation successfully sent."
+        redirect_to :back, notice: "Invitation successfully sent."
       else
-        redirect_to user_dashboard_path, alert: "Invalid email. You can only invite users with @shopify email account.."
+        redirect_to :back, alert: "Invalid email. You can only invite users with @shopify email account.."
       end
     elsif !userExists.empty? and ! invitationAccepted.any?
       User.invite!({:email => userEmail}, current_user)
