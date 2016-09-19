@@ -72,7 +72,7 @@ ready = (event) ->
         publishedDate : volumeInfo.publishedDate
         publisher : volumeInfo.publiser
         totalRatings : volumeInfo.ratingsCount
-        avgRating: "#{volumeInfo.averageRating}/5"
+        avgRating: if volumeInfo.averageRating? then "#{volumeInfo.averageRating}/5"
 
       this.$resultContainer.css("opacity","1");
 

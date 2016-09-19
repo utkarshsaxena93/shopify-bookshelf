@@ -12,8 +12,13 @@ $(document).on 'ready', () ->
       $(".#{id}__authors").text(if info.authors then info.authors.join(','))
       $(".#{id}__publishedDate").text(info.publishedDate)
       $(".#{id}__publisher").text(info.publisher)
-      $(".#{id}__avgRating").text("#{info.averageRating}/5")
-      $(".#{id}__totalRatings").text(info.ratingsCount)
+      if info.averageRating
+        $(".#{id}__avgRating").text("#{info.averageRating}/5")
+        $(".#{id}__totalRatings").text(info.ratingsCount)
+      else
+        $(".#{id}__avgRating").text("N/A")
+        $(".#{id}__totalRatings").text("N/A")
+
       return
 
     _getGBdata = (item, index) ->
