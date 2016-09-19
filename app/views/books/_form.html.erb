@@ -14,18 +14,22 @@
       <%= text_field_tag 'Title', nil, :class => 'form-control query-title', placeholder: "Search by title" %>
     </div>
   </div>
-  <div class="form-group form-group-location">
-    <%= label_tag 'Where is the book located or how to obtain the book?', nil, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :location, class: 'form-control', required: true, placeholder: "Floor of the building followed by the directions to the bookshelf or your email you own the book." %>
-    </div>
-  </div>
+</div>
+</div>
+
   <%= f.hidden_field :isbn, bind: "isbn" %>
   <%= f.hidden_field :title, bind: "title" %>
   <%= f.hidden_field :googleid, bind: "id" %>
   <%= f.hidden_field :category, bind: "categories" %>
   <%= f.hidden_field :apiLink, bind: "selfLink" %>
 
+<div class="row custom-well">
+  <div class="form-group form-group-location">
+    <%= label_tag 'Where can people find this book?', nil, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :location, class: 'form-control', required: true, placeholder: "Example. 9th Floor - User Experience Pod or 8th Floor Bookshelf" %>
+    </div>
+  </div>
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit nil, :class => 'btn btn-primary submit-btn', disabled: true %>
@@ -33,4 +37,5 @@
                 books_path, :class => 'btn btn-default' %>
     </div>
   </div>
+</div>
 <% end %>
