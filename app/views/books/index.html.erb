@@ -17,13 +17,14 @@
         <%= label_tag :title, nil, :class => 'control-label col-lg-2' %>
         <%= text_field_tag :title, params[:title], :class => 'form-control query-title', placeholder: "Search by title" %>
       </div>
+      <h5 class="categories-heading">Categories:</h5>
       <div class="radio">
-        <label>
+        <label class="category-radiobtn">
           <%= radio_button_tag "category", "All", (params[:category] == "All" || params[:category] == nil) %>
            <%= "All" %>
         </label>
         <% @categories.each do |category| %>
-            <label>
+            <label class="category-radiobtn">
               <%= radio_button_tag "category", "#{category}", (params[:category] == category) %>
                <%= category %>
             </label>

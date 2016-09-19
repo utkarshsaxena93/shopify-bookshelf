@@ -68,3 +68,21 @@
   font-style: italic;
   font-size: 1em;
 }
+
+.category-radiobtn {
+  margin: 2px 10px;
+}
+
+.radio {
+  height: 200px;
+  overflow-y: scroll;
+  width: 260px;
+}
+
+.category-radiobtn {
+  display: block;
+}
+
+.categories-heading {
+  font-weight: bold;
+}
