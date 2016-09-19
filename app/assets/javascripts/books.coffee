@@ -7,7 +7,7 @@ $(document).on 'ready', () ->
     bookIDs = []
 
     _render = (id, info) ->
-      $(".#{id}__image").attr('src', info.imageLinks.thumbnail)
+      if info.imageLinks.thumbnail then $(".#{id}__image").attr('src', info.imageLinks.thumbnail)
       $(".#{id}__description").html(info.description)
       $(".#{id}__authors").text(if info.authors then info.authors.join(','))
       $(".#{id}__publishedDate").text(info.publishedDate)

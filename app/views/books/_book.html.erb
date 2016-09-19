@@ -25,7 +25,7 @@
     </div>
     <div class="row">
       <div class="col-lg-2">
-        <img src="" class="book-<%= book.id %>__image book__image" >
+        <%= image_tag 'no_cover_thumb.gif', class: "book-#{book.id}__image book__image", width: "90%" %>
       </div>
       <div class="col-lg-10 book-info">
         <h5 class="book-info-h5 no-top-margin">Publisher: <span class="book-info-span book-<%= book.id %>__publisher"></span></h5>
