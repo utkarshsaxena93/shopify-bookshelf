@@ -19,20 +19,16 @@
       </div>
       <h5 class="categories-heading">Categories:</h5>
       <div class="radio">
-        <label class="category-radiobtn">
-          <%= radio_button_tag "category", "All", (params[:category] == "All" || params[:category] == nil) %>
-           <%= "All" %>
-        </label>
         <% @categories.each do |category| %>
             <label class="category-radiobtn">
-              <%= radio_button_tag "category", "#{category}", (params[:category] == category) %>
+              <%= check_box_tag  "categories[]", "#{category}",  (if params[:categories] then params[:categories].include? category end) %>
                <%= category %>
             </label>
           <% end %>
       </div>
       <div class="form-group">
-        <%= link_to 'View all', books_path, :class => 'btn btn-default' %>
-        <%= submit_tag("Filter", :class => 'btn btn-primary') %>
+        <%= link_to 'Remove Filters', books_path, :class => 'btn btn-default' %>
+        <%= submit_tag("Apply Filters", :class => 'btn btn-primary') %>
       </div>
     <% end %>
   </div>

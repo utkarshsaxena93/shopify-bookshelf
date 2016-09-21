@@ -13,17 +13,17 @@ class BooksController < ApplicationController
       @userReadingList = current_user.books_readings.select(:isbn).map{ |elem| elem.isbn }
     end
 
-    if params[:category] == "All" or params[:category] == nil
-      if params[:title] != nil and params[:title] != ""
-        @books = Book.where('lower(title) like ?', "%#{params[:title].downcase}%").paginate(:page => params[:page], per_page: 10).order('id DESC')
+    if params[:categories]
+      if params[:title] == ""
+        @books = Book.where(category: params[:categories]).paginate(:page => params[:page], per_page: 10).order('id DESC')
       else
-        @books = Book.paginate(:page => params[:page], per_page: 10).order('id DESC')
+        @books = Book.where('lower(title) like ?', "%#{params[:title].downcase}%").where(category: params[:categories]).paginate(:page => params[:page], per_page: 10).order('id DESC')
       end
     else
-      if params[:title] != nil and params[:title] != ""
-        @books = Book.where('lower(title) like ? and category like ?', "%#{params[:title].downcase}%", "%#{params[:category]}%").paginate(:page => params[:page], per_page: 10).order('id DESC')
+      if !params[:title] or params[:title] == ""
+        @books = Book.paginate(:page => params[:page], per_page: 10).order('id DESC')
       else
-        @books = Book.where('category like ?', "%#{params[:category]}%").paginate(:page => params[:page], per_page: 10).order('id DESC')
+        @books = Book.where('lower(title) like ?', "%#{params[:title].downcase}%").paginate(:page => params[:page], per_page: 10).order('id DESC')
       end
     end
   end
