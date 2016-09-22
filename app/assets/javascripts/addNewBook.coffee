@@ -49,20 +49,28 @@ ready = (event) ->
 
     getInformation: (queryParam) ->
 
-      $.get(this.googleBooksURL, { q : queryParam, maxResults: 1, key: "AIzaSyDQXH48zubdVETswWjDFe6pLcgLfcjxXHk" }, (data) =>
+      $.get(this.googleBooksURL, { q : queryParam, maxResults: 1, key: "AIzaSyDwQLiRpm48P27U3mGKF-kX0aQ1TVBXYYo" }, (data) =>
         if data.items and this.updateBookData(data)
-          this.googleBooksData = data.items
-          this.render()
+          $.get(data.items[0].selfLink, { q : queryParam, maxResults: 1, key: "AIzaSyDwQLiRpm48P27U3mGKF-kX0aQ1TVBXYYo" }, (moreData) =>
+            this.googleBooksData = moreData
+            this.render()
+          );
       );
 
     render: () ->
-      bookData = this.googleBooksData[0]
+      bookData = this.googleBooksData
       volumeInfo = bookData.volumeInfo
+
+      if volumeInfo.industryIdentifiers? and volumeInfo.industryIdentifiers[0]? and volumeInfo.industryIdentifiers[0].type == "ISBN_10"
+        if volumeInfo.industryIdentifiers[1]? and volumeInfo.industryIdentifiers[1].type == "ISBN_13"
+          isbnNumber = volumeInfo.industryIdentifiers[1].identifier
+      else if volumeInfo.industryIdentifiers? and volumeInfo.industryIdentifiers[0]? and volumeInfo.industryIdentifiers[0].type == "ISBN_13"
+        isbnNumber = volumeInfo.industryIdentifiers[1].identifier
 
       context.newBookInfo =
         selfLink : bookData.selfLink
         id : bookData.id,
-        isbn : if volumeInfo.industryIdentifiers? and volumeInfo.industryIdentifiers[0]? then volumeInfo.industryIdentifiers[0].identifier
+        isbn : isbnNumber
         authors : if volumeInfo.authors then volumeInfo.authors.join(', ')
         categories : if volumeInfo.categories then volumeInfo.categories.join(', ') else 'unknown'
         description : volumeInfo.description
