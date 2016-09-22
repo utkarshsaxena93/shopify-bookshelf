@@ -91,7 +91,7 @@ class BooksController < ApplicationController
   def addToCurrentlyReading
     book = Book.find(params[:bookid].to_i)
     book.user = current_user
-    @currentlyreadinglist = BooksReading.new(book.attributes.except("id", "location"))
+    @currentlyreadinglist = BooksReading.new(book.attributes.except("location"))
     respond_to do |format|
       if @currentlyreadinglist.save
         format.json { render json: {success: true}}
@@ -109,11 +109,11 @@ class BooksController < ApplicationController
 
     book = Book.find(params[:id].to_i)
     book.user = current_user
-    @booksread = BooksRead.new(book.attributes.except("id", "location"))
+    @booksread = BooksRead.new(book.attributes.except("location"))
 
     respond_to do |format|
       if @booksread.save
-        format.html { redirect_to user_dashboard_path, notice: 'Book was successfully moved to your "Read" list.' }
+        format.html { redirect_to :back, notice: 'Book was successfully moved to your "Read" list.' }
         format.json { head :no_content }
       else
         format.json { render json: {success: false}}

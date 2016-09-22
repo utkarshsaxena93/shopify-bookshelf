@@ -4,7 +4,7 @@
   <%= stylesheet_link_tag "books", :media => "all" %>
 <% end %>
 
-<div id="book" class="custom-well book-container" data-googleurl="https://www.googleapis.com/books/v1/volumes/<%= @book.googleid %>">
+<div id="book" class="custom-well show-book-container">
   <div class="row">
     <div class="col-lg-12">
       <div class="notifications-<%= @book.id %>">
@@ -13,7 +13,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9">
-      <a href="#" target="_blank" class="book__linktag">
+      <a href=<%= "http://books.google.ca/books?id=#{@book.googleid}" %> target="_blank" class="book__linktag">
         <h3 class="book__title"><%= @book.title %></h3>
         <% if @book.recommendation.any? %>
           <span class="label label-default recommended-label"><i class="fa fa-star" aria-hidden="true"></i> Recommended</span>
@@ -30,20 +30,24 @@
   </div>
   <div class="row">
     <div class="col-lg-2">
-      <img src="" class="book__image" >
+      <% if @book.imageurl and @book.imageurl != "" %>
+        <%= image_tag @book.imageurl , class: "book__image", width: "150" %>
+      <% else %>
+        <%= image_tag 'no_cover_thumb.gif' , class: "book__image", width: "150" %>
+      <% end %>
     </div>
     <div class="col-lg-10 book-info">
-      <h5>Publisher: <span class="book__publisher"></span></h5>
-      <h5>Published Date: <span class="book__publishedDate"></span></h5>
+      <h5>Publisher: <span class="book__publisher"><%= @book.publisher %></span></h5>
+      <h5>Published Date: <span class="book__publishedDate"><%= @book.publishedDate %></span></h5>
       <h5>Category: <span><%= @book.category %></span></h5>
-      <h5>Written by: <span class="book__authors"></span></h5>
+      <h5>Written by: <span class="book__authors"><%= @book.author %></span></h5>
       <h5>ISBN: <span><%= @book.isbn %></span></h5>
-      <h5>Average Rating (from <span class="book__totalRatings"></span> ratings): <span class="book__avgRating"></span><h5>
+      <h5>Average Rating (from <span class="book__totalRatings"><%= @book.ratingsCount %></span> ratings): <span class="book__avgRating"><%= @book.averageRating %></span><h5>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-12">
-      <p class="book__description"></p>
+      <p class="book__description"><%= @book.description ? @book.description.html_safe : "" %></p>
     </div>
   </div>
   <div class="row">

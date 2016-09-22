@@ -11,7 +11,7 @@ $(document).on 'ready', () ->
       $notificationContainer = $(".notifications-#{bookid}")
       if success
         $(target).parent('li').addClass('bg-success')
-        $el.children('li').addClass('disabled')
+        $(target).closest($el).children('li').addClass('disabled')
         $notificationContainer.append($("<p class='bg-success'></p>").html("Successfully added to the list. Go to your <a href='/dashboard'>dashboard</a> to manage your lists."))
         return
       else
@@ -80,6 +80,6 @@ $(document).on 'ready', () ->
       init: init
     }
     )()
-    
+
   booksList.init();
   booksRecommendation.init()

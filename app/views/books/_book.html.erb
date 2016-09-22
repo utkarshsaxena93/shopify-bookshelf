@@ -25,7 +25,7 @@
     </div>
     <div class="row">
       <div class="col-lg-2">
-        <% if book.imageurl %>
+        <% if book.imageurl and book.imageurl != "" %>
           <%= image_tag book.imageurl , class: "book-#{book.id}__image book__image", width: "150" %>
         <% else %>
           <%= image_tag 'no_cover_thumb.gif' , class: "book-#{book.id}__image book__image", width: "150" %>

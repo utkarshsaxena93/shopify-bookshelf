@@ -89,7 +89,7 @@ ready = (event) ->
       $ =>
         Twine.reset(context.newBookInfo).bind().refresh()
         this.$submitButton.prop('disabled',false)
-        if  context.newBookInfo.imageLinks then $('.gbData__thumbnailImage').attr("src", context.newBookInfo.imageLinks.thumbnail )
+        if  context.newBookInfo.imageLinks then $('.gbData__thumbnailImage').attr("src", context.newBookInfo.imageLinks.thumbnail ) else $('.gbData__thumbnailImage').attr("src", "#" )
         return
 
   addBooks.init()
