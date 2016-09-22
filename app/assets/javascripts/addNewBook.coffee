@@ -49,9 +49,9 @@ ready = (event) ->
 
     getInformation: (queryParam) ->
 
-      $.get(this.googleBooksURL, { q : queryParam, maxResults: 1, key: "AIzaSyDwQLiRpm48P27U3mGKF-kX0aQ1TVBXYYo" }, (data) =>
+      $.get(this.googleBooksURL, { q : queryParam, maxResults: 1, key: "AIzaSyBYfDjMf5wBQzxVxwhZYTlBOynml-eGdkE" }, (data) =>
         if data.items and this.updateBookData(data)
-          $.get(data.items[0].selfLink, { q : queryParam, maxResults: 1, key: "AIzaSyDwQLiRpm48P27U3mGKF-kX0aQ1TVBXYYo" }, (moreData) =>
+          $.get(data.items[0].selfLink, { q : queryParam, maxResults: 1, key: "AIzaSyBYfDjMf5wBQzxVxwhZYTlBOynml-eGdkE" }, (moreData) =>
             this.googleBooksData = moreData
             this.render()
           );
