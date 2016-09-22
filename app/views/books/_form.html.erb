@@ -23,6 +23,14 @@
   <%= f.hidden_field :category, bind: "categories" %>
   <%= f.hidden_field :apiLink, bind: "selfLink" %>
 
+  <%= f.hidden_field :publisher, bind: "publisher" %>
+  <%= f.hidden_field :publishedDate, bind: "publishedDate" %>
+  <%= f.hidden_field :author, bind: "authors" %>
+  <%= f.hidden_field :averageRating, bind: "avgRating" %>
+  <%= f.hidden_field :ratingsCount, bind: "totalRatings" %>
+  <%= f.hidden_field :description, bind: "description" %>
+  <%= f.hidden_field :imageurl, bind: "imageurl" %>
+
 <div class="row custom-well">
   <div class="form-group form-group-location">
     <%= label_tag 'Where can people find this book?', nil, :class => 'control-label col-lg-2' %>

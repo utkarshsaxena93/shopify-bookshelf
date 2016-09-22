@@ -63,16 +63,17 @@ ready = (event) ->
         selfLink : bookData.selfLink
         id : bookData.id,
         isbn : if volumeInfo.industryIdentifiers? and volumeInfo.industryIdentifiers[0]? then volumeInfo.industryIdentifiers[0].identifier
-        authors : if volumeInfo.authors then volumeInfo.authors.join(',')
-        categories : if volumeInfo.categories then volumeInfo.categories.join(',') else ''
+        authors : if volumeInfo.authors then volumeInfo.authors.join(', ')
+        categories : if volumeInfo.categories then volumeInfo.categories.join(', ') else 'unknown'
         description : volumeInfo.description
         title: volumeInfo.title
         imageLinks : volumeInfo.imageLinks
         googleLink : volumeInfo.infoLink
         publishedDate : volumeInfo.publishedDate
-        publisher : volumeInfo.publiser
+        publisher : volumeInfo.publisher
         totalRatings : volumeInfo.ratingsCount
         avgRating: if volumeInfo.averageRating? then "#{volumeInfo.averageRating}/5"
+        imageurl: if volumeInfo.imageLinks then volumeInfo.imageLinks.thumbnail else ""
 
       this.$resultContainer.css("opacity","1");
 
