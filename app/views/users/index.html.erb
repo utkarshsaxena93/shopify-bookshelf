@@ -13,18 +13,21 @@
         <%= image_tag("https://www.gravatar.com/avatar/#{user.gravitarhash}?d=retro") %>
         <div class="caption">
           <h3><%= user.name %></h3>
-          <p class='text-italic'>
-             <% if !user.books_readings.empty? %>
-             Currently reading:
-               <span class='text-bold'><%= user.books_readings.map{|book| book.title}.join(",") %></span>
-             <% end %>
-          </p>
+            <% if !user.books_readings.empty? %>
+              <p class='text-italic'>
+                Currently reading:
+                <span class='text-bold'><%= user.books_readings.map{|book| book.title}.join(",") %></span>
+              </p>
+            <% else %>
+              <p class='text-italic'>
+                 Books on WishList: <span class='text-bold'><%= user.books_wishlists.count %></span>
+              </p>              
+            <% end %>
+
           <p class='text-italic'>
              Number of book(s) read: <span class='text-bold'><%= user.books_reads.count %></span>
           </p>
-          <p class='text-italic'>
-             Books on WishList: <span class='text-bold'><%= user.books_wishlists.count %></span>
-          </p>
+
           <p class='text-italic'>
              Number of book(s) contributed to Shopify Bookshelf: <span class='text-bold'><%= user.books.count %></span>
           </p>
