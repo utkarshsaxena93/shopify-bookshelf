@@ -61,7 +61,6 @@ class BooksController < ApplicationController
           :description => book_params["description"],
           :imageurl => book_params["imageurl"]
          })
-        byebug
         format.html { redirect_to new_book_path, alert: 'Book with this ISBN already exists in the bookshelf.' }
       elsif @book.save
         format.html { redirect_to user_dashboard_path, notice: 'Book was successfully added.' }
