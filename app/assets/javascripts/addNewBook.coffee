@@ -61,11 +61,12 @@ ready = (event) ->
       bookData = this.googleBooksData
       volumeInfo = bookData.volumeInfo
 
-      if volumeInfo.industryIdentifiers? and volumeInfo.industryIdentifiers[0]? and volumeInfo.industryIdentifiers[0].type == "ISBN_10"
-        if volumeInfo.industryIdentifiers[1]? and volumeInfo.industryIdentifiers[1].type == "ISBN_13"
-          isbnNumber = volumeInfo.industryIdentifiers[1].identifier
-      else if volumeInfo.industryIdentifiers? and volumeInfo.industryIdentifiers[0]? and volumeInfo.industryIdentifiers[0].type == "ISBN_13"
+      # Logic to load the correct ISBN. Make the logic below more concise
+      if volumeInfo.industryIdentifiers? and volumeInfo.industryIdentifiers[0]? and volumeInfo.industryIdentifiers[0].type == "ISBN_13"
         isbnNumber = volumeInfo.industryIdentifiers[1].identifier
+      else if volumeInfo.industryIdentifiers[1]? and volumeInfo.industryIdentifiers[1].type == "ISBN_13"
+        isbnNumber = volumeInfo.industryIdentifiers[1].identifier
+      # End ISBN logic
 
       context.newBookInfo =
         selfLink : bookData.selfLink

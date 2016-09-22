@@ -2,43 +2,6 @@
 
 $(document).on 'ready', () ->
 
-  booksData = (() ->
-    $el = $('.book-container')
-    bookIDs = []
-
-    _render = (id, info) ->
-      if info.imageLinks.thumbnail then $(".#{id}__image").attr('src', info.imageLinks.thumbnail)
-      $(".#{id}__description").html(info.description)
-      $(".#{id}__authors").text(if info.authors then info.authors.join(','))
-      $(".#{id}__publishedDate").text(info.publishedDate)
-      $(".#{id}__publisher").text(info.publisher)
-      if info.averageRating
-        $(".#{id}__avgRating").text("#{info.averageRating}/5")
-        $(".#{id}__totalRatings").text(info.ratingsCount)
-      else
-        $(".#{id}__avgRating").text("N/A")
-        $(".#{id}__totalRatings").text("N/A")
-
-      return
-
-    _getGBdata = (item, index) ->
-      bookID = item.id
-      gbURL = item.url
-      $.get(gbURL, { key: "AIzaSyDwQLiRpm48P27U3mGKF-kX0aQ1TVBXYYo" }, (result) =>
-        if result then _render(bookID, result.volumeInfo)
-    );
-
-    init = () ->
-
-      $el.each () ->
-        bookIDs.push id: $(this).attr('id'), url: $(this).attr('data-googlelink')
-      bookIDs.forEach(_getGBdata)
-
-    return {
-      init: init
-    }
-    )()
-
   booksList = (() ->
     $el = $('.add-book-to-list-dropdown')
     $elBtn = $('.add-book-to-list-btn')
@@ -117,7 +80,6 @@ $(document).on 'ready', () ->
       init: init
     }
     )()
-
-  booksData.init();
+    
   booksList.init();
   booksRecommendation.init()

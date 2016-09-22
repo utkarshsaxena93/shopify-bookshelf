@@ -46,21 +46,11 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @bookAlreadyExists = Book.exists?(isbn: book_params["isbn"].to_i)
-    # @book = Book.new(book_params)
-    # @book.user = current_user
+    @book = Book.new(book_params)
+    @book.user = current_user
 
     respond_to do |format|
       if  @bookAlreadyExists
-        book = Book.where(isbn: book_params["isbn"].to_i)
-        book.update_all({
-          :publisher => book_params["publisher"],
-          :publishedDate => book_params["publishedDate"],
-          :author => book_params["author"],
-          :averageRating => book_params["averageRating"].to_i,
-          :ratingsCount => book_params["ratingsCount"].to_i,
-          :description => book_params["description"],
-          :imageurl => book_params["imageurl"]
-         })
         format.html { redirect_to new_book_path, alert: 'Book with this ISBN already exists in the bookshelf.' }
       elsif @book.save
         format.html { redirect_to user_dashboard_path, notice: 'Book was successfully added.' }
