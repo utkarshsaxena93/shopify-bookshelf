@@ -3,11 +3,8 @@
 Devise.setup do |config|
   # Google Authentication
   if ENV["GOOGLE_CLIENT_ID"] and ENV["GOOGLE_CLIENT_SECRET"]
-    puts "PROD GOOGLE CREDS"
-    puts ENV["GOOGLE_CLIENT_ID"]
     config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"], { }
   else
-    puts "DEV GOOGLE CREDS"
     config.omniauth :google_oauth2, "523156434608-hcmtu4vh7ut6h9vh6mbfu1uo30cls4ah.apps.googleusercontent.com", "1baH-4VutNIDypoVf1Es5Jp-", { }
   end
   # The secret key used by Devise. Devise uses this key to generate
