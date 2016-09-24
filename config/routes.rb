@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :books
-  devise_for :users,  :controllers => { registrations: 'registrations' }
+  devise_for :users,  :controllers => { registrations: 'registrations', :omniauth_callbacks => "omniauth" }
   resources :users, only: [:show]
   # Home Page
   root 'stories#index'

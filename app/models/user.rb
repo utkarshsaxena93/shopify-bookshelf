@@ -2,8 +2,8 @@ require 'digest/md5'
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :invitable, :database_authenticatable, :registerable, :confirmable, :omniauthable,
+         :recoverable, :rememberable, :trackable, :validatable, :omniauth_providers => [:google_oauth2]
   before_destroy :delete_activities
 
   validates :name, presence: true, on: :create
@@ -18,5 +18,22 @@ class User < ActiveRecord::Base
   def delete_activities
     activities = PublicActivity::Activity.where(owner_id: self.id, owner_type: "User")
     activities.delete_all
+  end
+
+  def self.from_omniauth(access_token)
+    data = access_token.info
+
+    user = User.where(:email => data["email"]).first
+
+    unless user
+        user = User.new(name: data["name"],
+           email: data["email"],
+           password: Devise.friendly_token[0,20],
+           position: "A fellow Shopifolk"
+        )
+        user.skip_confirmation!
+        user.save!
+    end
+    user
   end
 end

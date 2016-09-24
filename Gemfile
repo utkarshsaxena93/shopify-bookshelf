@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # Authentication using devise
 gem 'devise'
 
+# Google Authentication
+gem "omniauth-google-oauth2"
+
 # Inviation using devise - https://github.com/scambra/devise_invitable
 gem 'devise_invitable'
 
