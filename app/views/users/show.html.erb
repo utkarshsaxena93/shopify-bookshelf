@@ -14,6 +14,11 @@
       <% if !@user.books_readings.empty? %>
         <h5 class="userprofile-headings">Currently Reading:</h5><span class="userprofile-span"><%= @user.books_readings.map{|book| book.title}.join(",") %></span>
       <% end %>
+      <% if @user == current_user %>
+        <%= link_to "Edit Profile",
+        edit_user_registration_path,
+         class: "btn btn-primary btn-sm" %>
+         <% end %>
     </div>
   </div>
   <div class="row">
