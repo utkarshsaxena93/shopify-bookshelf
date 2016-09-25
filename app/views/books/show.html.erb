@@ -42,7 +42,9 @@
       <h5>Category: <span><%= @book.category %></span></h5>
       <h5>Written by: <span class="book__authors"><%= @book.author %></span></h5>
       <h5>ISBN: <span><%= @book.isbn %></span></h5>
+      <h5>Location: <span><%= @book.location %></span></h5>
       <h5>Average Rating (from <span class="book__totalRatings"><%= @book.ratingsCount %></span> ratings): <span class="book__avgRating"><%= @book.averageRating %></span><h5>
+      <%= link_to "Update Location", edit_book_path(@book), class: "btn btn-sm btn-default" %>
     </div>
   </div>
   <div class="row">

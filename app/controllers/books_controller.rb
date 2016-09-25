@@ -66,8 +66,8 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1.json
   def update
     respond_to do |format|
-      if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+      if @book.update(update_only_book_params)
+        format.html { redirect_to @book, notice: 'Location was successfully updated.' }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit }
@@ -212,6 +212,10 @@ class BooksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
       params.require(:book).permit(:isbn, :googleid, :category, :apiLink, :title, :location, :publisher, :publishedDate, :author, :averageRating, :ratingsCount, :description, :imageurl)
+    end
+
+    def update_only_book_params
+      params.require(:book).permit(:location)
     end
 
     def without_tracking(modalName)

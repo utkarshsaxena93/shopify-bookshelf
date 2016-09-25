@@ -38,7 +38,7 @@
         <h5 class="book-info-h5">Written by: <span class="book-info-span book-<%= book.id %>__authors"><%= book.author %></span></h5>
         <h5 class="book-info-h5">ISBN: <span class="book-info-span"><%= book.isbn %></span></h5>
         <h5 class="book-info-h5">Average Rating (from <span class="book-info-span book-<%= book.id %>__totalRatings"><%= book.ratingsCount == 0 ? "N/A" : book.ratingsCount %></span> ratings): <span class="book-<%= book.id %>__avgRating"><%= book.averageRating == 0 ? "N/A" : book.averageRating %></span><h5>
-        <h5 class="book-info-h5">How to obtain the book: <span class="book-info-span"><%= book.location %></span></h5>
+        <h5 class="book-info-h5">How to obtain the book: <span class="book-info-span"><%= book.location %></span></h5> <%= link_to "Update Location", edit_book_path(book), class: "btn btn-sm btn-default" %>
       </div>
     </div>
     <div class="row">
