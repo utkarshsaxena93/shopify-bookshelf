@@ -20,7 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  activity:
+  activity:      
     recommendation:
       create: "recommended"
     books_wishlist:
@@ -30,6 +30,7 @@ en:
     books_reading:
       create: 'to currently reading.'
     book:
+      update: "updated the location of"
       destroy: 'removed'
       create: 'to the bookshelf.'
     like:
