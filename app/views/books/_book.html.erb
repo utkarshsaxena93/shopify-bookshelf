@@ -15,7 +15,7 @@
           <% end %>
         </a>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-3 col-sm-12">
         <% if current_user and !book.recommendation.map{|elem| elem.user_id}.include?(current_user.id) %>
         <button type="button" class="btn btn-success btn-small btn-recommendation book-<%= book.id %>__addRecommendation" data-bookid="<%= book.id %>" data-target="#modal">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add a recommendation
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-2">
+      <div class="col-lg-2 col-md-2 col-sm-12">
         <% if book.imageurl and book.imageurl != "" %>
           <%= image_tag book.imageurl , class: "book-#{book.id}__image book__image", width: "150" %>
         <% else %>

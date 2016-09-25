@@ -47,6 +47,11 @@
 
 .btn-recommendation {
   float: right;
+
+  @media screen and (max-width: 520px) {
+    float: none;
+    margin-bottom: 10px;
+  }
 }
 
 .modal-content {
