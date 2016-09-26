@@ -8,7 +8,7 @@ class BooksController < ApplicationController
     @categories = Book.pluck(:category).uniq
 
     if current_user
-      @userReadList = current_user.books_reads.select(:isbn).map{ |elem| elem }
+      @userReadList = current_user.books_reads.select(:isbn).map{ |elem| elem.isbn }
       @userWishList = current_user.books_wishlists.select(:isbn).map{ |elem| elem.isbn }
       @userReadingList = current_user.books_readings.select(:isbn).map{ |elem| elem.isbn }
     end
@@ -91,7 +91,7 @@ class BooksController < ApplicationController
   def addToCurrentlyReading
     book = Book.find(params[:bookid].to_i)
     book.user = current_user
-    @currentlyreadinglist = BooksReading.new(book.attributes.except("location"))
+    @currentlyreadinglist = BooksReading.new(book.attributes.except("id", "location"))
     respond_to do |format|
       if @currentlyreadinglist.save
         format.json { render json: {success: true}}
@@ -102,14 +102,14 @@ class BooksController < ApplicationController
   end
 
   def destroyCurrentlyReading
+    book = BooksReading.find(params[:id].to_i)
+    book.user = current_user
+    @booksread = BooksRead.new(book.attributes.except("id", "location"))
+
     without_tracking(BooksReading) do
       books_reading = current_user.books_readings
       books_reading.find(params[:id].to_i).destroy()
     end
-
-    book = Book.find(params[:id].to_i)
-    book.user = current_user
-    @booksread = BooksRead.new(book.attributes.except("location"))
 
     respond_to do |format|
       if @booksread.save
