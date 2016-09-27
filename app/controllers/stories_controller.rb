@@ -1,7 +1,6 @@
 class StoriesController < ApplicationController
   before_action :find_story, only: [:destroy, :show, :edit, :update, :like]
   before_action :load_activities, only: [:index, :show, :new, :edit]
-  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     @stories = Story.limit(40).order('created_at DESC')

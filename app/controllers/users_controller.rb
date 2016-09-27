@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!
 
   def index
     @users = User.where.not(id: current_user.id).paginate(:page => params[:page], per_page: 50).order('id DESC')

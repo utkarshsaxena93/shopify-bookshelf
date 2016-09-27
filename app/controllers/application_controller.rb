@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   include PublicActivity::StoreController
   protect_from_forgery with: :exception
-
-  before_action :authenticate_user!, :gravitarhash, :devise_configure_permitted_parameters, if: :devise_controller?
+  before_action :gravitarhash, :devise_configure_permitted_parameters, if: :devise_controller?
 
   def gravitarhash
     if current_user
