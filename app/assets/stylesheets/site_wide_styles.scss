@@ -5,6 +5,12 @@ body {
   background-color: #e7e9ec;
 }
 
+.navbar-brand > img {  
+  bottom: 8px;
+  position: relative;
+  width: 220px;
+}
+
 .btn {
   border-radius: 0;
   font-size: 0.875em;
