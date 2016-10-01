@@ -53,7 +53,7 @@ class BooksController < ApplicationController
       if  @bookAlreadyExists
         format.html { redirect_to new_book_path, alert: 'Book with this ISBN already exists in the bookshelf.' }
       elsif @book.save
-        format.html { redirect_to user_dashboard_path, notice: 'Book was successfully added.' }
+        format.html { redirect_to book_path(@book), notice: 'Book was successfully added.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }

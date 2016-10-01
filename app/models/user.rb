@@ -2,7 +2,7 @@ require 'digest/md5'
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable, :confirmable, :omniauthable,
+  devise :invitable, :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauth_providers => [:google_oauth2]
   before_destroy :delete_activities
 
@@ -31,7 +31,6 @@ class User < ActiveRecord::Base
            password: Devise.friendly_token[0,20],
            position: "A fellow Shopifolk"
         )
-        user.skip_confirmation!
         user.save!
     end
     user
