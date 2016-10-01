@@ -74,7 +74,6 @@ ready = (event) ->
         isbn : isbnNumber
         authors : if volumeInfo.authors then volumeInfo.authors.join(', ')
         categories : if volumeInfo.categories then volumeInfo.categories.join(', ') else 'unknown'
-        description : volumeInfo.description
         title: volumeInfo.title
         imageLinks : volumeInfo.imageLinks
         googleLink : volumeInfo.infoLink
@@ -84,6 +83,7 @@ ready = (event) ->
         avgRating: if volumeInfo.averageRating? then "#{volumeInfo.averageRating}/5"
         imageurl: if volumeInfo.imageLinks then volumeInfo.imageLinks.thumbnail else ""
 
+      $('.new-book-description').html(volumeInfo.description)
       this.$resultContainer.css("opacity","1");
 
       $ =>
