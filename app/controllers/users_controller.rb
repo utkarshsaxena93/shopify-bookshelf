@@ -40,7 +40,6 @@ class UsersController < ApplicationController
         redirect_to :back, alert: "Invalid email. You can only invite users with @shopify email account.."
       end
     elsif !userExists.empty?
-      InviteUser.send_invite_email(userEmail, current_user).deliver
       redirect_to :back, alert: "User already exists. No invitation sent."
     end
   end
