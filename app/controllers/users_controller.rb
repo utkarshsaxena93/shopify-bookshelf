@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   def create_invitation
     userEmail = params[:email]
     userExists = User.where(email: userEmail)
-    
+
     if userExists.empty?
       if userEmail.include? "@shopify.com"
         InviteUser.send_invite_email(userEmail, current_user).deliver
