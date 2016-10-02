@@ -19,9 +19,8 @@ gem 'devise'
 # Google Authentication
 gem "omniauth-google-oauth2"
 
-# Inviation using devise - https://github.com/scambra/devise_invitable
-gem 'devise_invitable'
-
+# https://github.com/stephenb/sendgrid/
+gem 'sendgrid'
 
 # Twitter Bootstrap for devise
 gem 'devise-bootstrap-views'

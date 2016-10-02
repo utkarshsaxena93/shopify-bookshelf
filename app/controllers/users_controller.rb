@@ -31,21 +31,19 @@ class UsersController < ApplicationController
   def create_invitation
     userEmail = params[:email]
     userExists = User.where(email: userEmail)
-    invitationAccepted = userExists.pluck(:invitation_accepted_at)
+    nviteUser.send_invite_email(userEmail, current_user)
 
-    if userExists.empty?
-      if userEmail.include? "@shopify.com"
-        User.invite!({:email => userEmail}, current_user)
-        redirect_to :back, notice: "Invitation successfully sent."
-      else
-        redirect_to :back, alert: "Invalid email. You can only invite users with @shopify email account.."
-      end
-    elsif !userExists.empty? and ! invitationAccepted.any?
-      User.invite!({:email => userEmail}, current_user)
-      redirect_to user_dashboard_path, alert: "User has already been invited. Sending a fresh invite."
-    else
-      redirect_to user_dashboard_path, alert: "User already exists. No invitation sent."
-    end
+    # if userExists.empty?
+    #   if userEmail.include? "@shopify.com"
+    #     InviteUser.send_invite_email(userEmail, current_user)
+    #     redirect_to :back, notice: "Invitation successfully sent."
+    #   else
+    #     redirect_to :back, alert: "Invalid email. You can only invite users with @shopify email account.."
+    #   end
+    # elsif !userExists.empty?
+    #   byebug
+    #   InviteUser.send_invite_email(userEmail, current_user)
+    #   redirect_to :back, alert: "User already exists. No invitation sent."
+    # end
   end
-
 end
