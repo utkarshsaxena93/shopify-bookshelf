@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     userEmail = params[:email]
     userExists = User.where(email: userEmail)
     InviteUser.send_invite_email(userEmail, current_user)
+    redirect_to :back, notice: "Invitation successfully sent."
 
     # if userExists.empty?
     #   if userEmail.include? "@shopify.com"
