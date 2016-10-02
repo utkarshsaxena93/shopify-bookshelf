@@ -1,11 +1,12 @@
 // Site wide styles go here
 @import 'variables';
+@import "fonts";
 
 body {
   background-color: #e7e9ec;
 }
 
-.navbar-brand > img {  
+.navbar-brand > img {
   bottom: 8px;
   position: relative;
   width: 220px;
@@ -27,7 +28,9 @@ body {
 }
 
 .brand-text-footer {
+  font-family: 'Brandon';
   font-weight: bold;
+  color: white;
 }
 
 // Navbar begins
@@ -38,7 +41,7 @@ body {
 
 .navbar-slate {
   background-color: $shopify-slate;
-  border-color: #080808;
+  border-bottom: 2px solid $homepage-lightgrey;
 }
 
 .navbar-brand {
@@ -54,6 +57,7 @@ body {
   li>a {
     color: $shopify-navbartext;
     text-transform: uppercase;
+    font-family: 'Brandon';
     &:hover, &:focus {
       background-color: inherit;
       color: #fff;

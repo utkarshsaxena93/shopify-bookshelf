@@ -1,8 +1,26 @@
-<div class="jumbotron text-center">
-  <div class="jumbotron-text">
-    <h1>Welcome to <span class="green-text">Shopify Bookshelf</span></h1>
-    <p>Share recommendations, See what other Shopifolks are reading, Decide on what to read next. Choose from over <strong class="book-count"><%= Book.count %></strong> titles available across Shopify.</p>
-    <p><%= link_to "Browse Books", books_path, class: "btn btn-lg btn-success" %></p>
-    <%= link_to "Learn More", about_path, class: "btn btn-warning btn-lg" %>
+<style>
+  body {
+    background-color: #30373b;
+  }
+</style>
+<div class="text-center custom-jumbotron">
+  <h4 class="jumbotron__headingOne">Welcome to</h4>
+  <h5 class="jumbotron__headingTwo">Shopify</h5>
+  <h5 class="jumbotron__headingThree">Bookshelf</h5>
+  <ul class="jumbotron__list">
+    <li>
+      Share Recommendations.
+    </li>
+    <li>
+      Se what other Shopifolks are reading.
+    </li>
+    <li>
+      Decide on what to read next from over <%= Book.count %> titles.
+    </li>
+  </ul>
+  <%= image_tag("homepage-book-illustration.png", class: 'jumbotron__image') %>
+  <div class="jumbotron__ctas">
+    <%= link_to "Browse Books", books_path, class: "btn btn-cta btn-cta-browse" %>
+    <%= link_to "Learn More", about_path, class: "btn btn-cta btn-cta-learn" %>
   </div>
 </div>
