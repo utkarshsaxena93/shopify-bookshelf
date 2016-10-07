@@ -15,15 +15,15 @@ class BooksController < ApplicationController
 
     if params[:categories]
       if params[:title] == ""
-        @books = Book.where(category: params[:categories]).paginate(:page => params[:page], per_page: 10).order('id DESC')
+        @books = Book.where(category: params[:categories]).paginate(:page => params[:page], per_page: 1).order('id DESC')
       else
-        @books = Book.where('lower(title) like ?', "%#{params[:title].downcase}%").where(category: params[:categories]).paginate(:page => params[:page], per_page: 10).order('id DESC')
+        @books = Book.where('lower(title) like ?', "%#{params[:title].downcase}%").where(category: params[:categories]).paginate(:page => params[:page], per_page: 1).order('id DESC')
       end
     else
       if !params[:title] or params[:title] == ""
-        @books = Book.paginate(:page => params[:page], per_page: 10).order('id DESC')
+        @books = Book.paginate(:page => params[:page], per_page: 1).order('id DESC')
       else
-        @books = Book.where('lower(title) like ?', "%#{params[:title].downcase}%").paginate(:page => params[:page], per_page: 10).order('id DESC')
+        @books = Book.where('lower(title) like ?', "%#{params[:title].downcase}%").paginate(:page => params[:page], per_page: 1).order('id DESC')
       end
     end
   end

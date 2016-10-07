@@ -22,7 +22,7 @@
     </div>
     <div class="col-lg-3">
       <% if !@book.recommendation.map{|elem| elem.user_id}.include?(current_user.id) %>
-      <button type="button" class="btn btn-success btn-small btn-recommendation book-<%= @book.id %>__addRecommendation" data-bookid="<%= @book.id %>" data-target="#modal">
+      <button type="button" class="btn btn-small btn-recommendation book-<%= @book.id %>__addRecommendation" data-bookid="<%= @book.id %>" data-target="#modal">
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add a recommendation
       </button>
       <% end %>
@@ -44,7 +44,7 @@
       <h5>ISBN: <span><%= @book.isbn %></span></h5>
       <h5>Location: <span><%= @book.location %></span></h5>
       <h5>Average Rating (from <span class="book__totalRatings"><%= @book.ratingsCount %></span> ratings): <span class="book__avgRating"><%= @book.averageRating %></span><h5>
-      <%= link_to "Update Location", edit_book_path(@book), class: "btn btn-sm btn-default" %>
+      <%= link_to "Update Location", edit_book_path(@book), class: "btn btn-sm btn-update-location" %>
     </div>
   </div>
   <div class="row">

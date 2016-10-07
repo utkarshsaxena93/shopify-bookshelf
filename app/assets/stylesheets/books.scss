@@ -1,7 +1,7 @@
 // Place all the styles related to the Books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import "variables";
 // Show scroll bar
 ::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -14,20 +14,55 @@
 }
 // end
 
+#filter-books-form {
+  font-family: 'Brandon';
+  padding: 10px 19px;
+}
+
+
+.book-info-span-one {
+  color: black;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.book-container {
+  font-family: 'Brandon';
+}
+
 .books_addabookbtn {
   margin-bottom: 10px;
 }
 
+.btn-apply-filter {
+  color: white;
+  background-color: $homepage-green;
+}
+
+.btn-remove-filter {
+  background-color: $homepage-lightgrey;
+  color: white;
+}
+
 .pagination {
-  margin: 15px 0;
+  margin: 10px 0;
   border-radius: 0;
 }
 
 .book__title {
-  margin-bottom: 20px;
+  margin-bottom: -10px;
   margin-top: 0;
   font-weight: bold;
   display: inline-block;
+  color: black;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.radio label {
+  padding-left: 0;
 }
 
 .book__description {
@@ -59,6 +94,8 @@
 
 .btn-recommendation {
   float: right;
+  background-color: $homepage-green;
+  color: white;
 
   @media screen and (max-width: 520px) {
     float: none;
@@ -94,6 +131,7 @@
   height: 120px;
   overflow-y: scroll;
   width: 260px;
+  border: 1px solid #c3c3c3;
 }
 
 .category-radiobtn {
@@ -112,4 +150,9 @@
     }
   }
 
+}
+
+.add-book-to-list-btn {
+  background-color: $homepage-green;
+  color: white;
 }

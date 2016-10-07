@@ -10,6 +10,7 @@
       <div class="col-lg-9">
         <a href="/books/<%= book.id %>" class="book-<%= book.id %>__linktag">
           <h3 class="book__title book-<%= book.id %>__title"><%= book.title %></h3>
+          <span class="book-info-span-one book-<%= book.id %>__authors">by <%= book.author %></span>
           <% if book.recommendation.any? %>
             <span class="label label-default recommended-label"><i class="fa fa-star" aria-hidden="true"></i> Recommended</span>
           <% end %>
@@ -17,7 +18,7 @@
       </div>
       <div class="col-lg-3 col-sm-12">
         <% if current_user and !book.recommendation.map{|elem| elem.user_id}.include?(current_user.id) %>
-        <button type="button" class="btn btn-success btn-small btn-recommendation book-<%= book.id %>__addRecommendation" data-bookid="<%= book.id %>" data-target="#modal">
+        <button type="button" class="btn btn-small btn-recommendation book-<%= book.id %>__addRecommendation" data-bookid="<%= book.id %>" data-target="#modal">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add a recommendation
         </button>
         <% end %>
@@ -38,7 +39,7 @@
         <h5 class="book-info-h5">Written by: <span class="book-info-span book-<%= book.id %>__authors"><%= book.author %></span></h5>
         <h5 class="book-info-h5">ISBN: <span class="book-info-span"><%= book.isbn %></span></h5>
         <h5 class="book-info-h5">Average Rating (from <span class="book-info-span book-<%= book.id %>__totalRatings"><%= book.ratingsCount == 0 ? "N/A" : book.ratingsCount %></span> ratings): <span class="book-<%= book.id %>__avgRating"><%= book.averageRating == 0 ? "N/A" : book.averageRating %></span><h5>
-        <h5 class="book-info-h5">How to obtain the book: <span class="book-info-span"><%= book.location %></span></h5> <%= link_to "Update Location", edit_book_path(book), class: "btn btn-sm btn-default" %>
+        <h5 class="book-info-h5">How to obtain the book: <span class="book-info-span"><%= book.location %></span></h5> <%= link_to "Update Location", edit_book_path(book), class: "btn btn-sm btn-update-location" %>
       </div>
     </div>
     <div class="row">
@@ -57,7 +58,7 @@
     </div>
     <% if current_user %>
       <div class="book-<%= book.id %>__dropdown dropdown">
-        <button class="btn btn-primary dropdown-toggle add-book-to-list-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <button class="btn dropdown-toggle add-book-to-list-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           Add to list
           <span class="caret"></span>
         </button>
