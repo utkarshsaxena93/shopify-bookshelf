@@ -3,12 +3,10 @@
 <% end %>
 
 <%- model_class = Book -%>
-<div class="books__pageheadercontainer">
-  <h1 class="books_heading">Books in Shopify Bookshelf:</h1>
-</div>
 <div class="row">
   <div class="col-sm-12 col-md-5 col-md-push-3">
     <%= form_tag books_path,  method: :get, id: 'filter-books-form', class: 'custom-well' do |form| %>
+    <h4>Filter:</h4>
       <div class="form-group">
         <%= label_tag :title, nil, :class => 'control-label' %>
         <%= text_field_tag :title, params[:title], :class => 'form-control query-title', placeholder: "Search by title" %>
