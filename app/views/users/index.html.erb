@@ -1,9 +1,8 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag "allUsers", :media => "all" %>
 <% end %>
-<h1>Shopifolks:</h1>
 <div align="center">
-    <%= will_paginate %>
+    <%= will_paginate @users, :previous_label => "&#8592", :next_label => "&#8594" %>
 </div>
 <div class="container">
   <div class="row">
@@ -21,7 +20,7 @@
             <% else %>
               <p class='text-italic'>
                  Books on WishList: <span class='text-bold'><%= user.books_wishlists.count %></span>
-              </p>              
+              </p>
             <% end %>
 
           <p class='text-italic'>
@@ -41,5 +40,5 @@
   </div>
 </div>
 <div align="center">
-    <%= will_paginate %>
+    <%= will_paginate @users, :previous_label => "&#8592", :next_label => "&#8594" %>
 </div>

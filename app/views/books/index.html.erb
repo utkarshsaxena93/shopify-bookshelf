@@ -30,7 +30,7 @@
 
 <div class="">
   <div align="center">
-      <%= will_paginate %>
+      <%= will_paginate @books, :previous_label => "&#8592", :next_label => "&#8594" %>
   </div>
   <%= render 'book', :obj => @books %>
   <div align="center">
