@@ -77,9 +77,6 @@ ready = (event) ->
         title: volumeInfo.title
         imageLinks : volumeInfo.imageLinks
         googleLink : volumeInfo.infoLink
-        publishedDate : volumeInfo.publishedDate
-        publisher : volumeInfo.publisher
-        totalRatings : volumeInfo.ratingsCount,
         description: volumeInfo.description,
         avgRating: if volumeInfo.averageRating? then "#{volumeInfo.averageRating}/5"
         imageurl: if volumeInfo.imageLinks then volumeInfo.imageLinks.thumbnail else ""

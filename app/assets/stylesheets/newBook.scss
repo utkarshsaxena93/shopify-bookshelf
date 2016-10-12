@@ -1,4 +1,21 @@
 // Add a new book page specific styles
+@import "variables";
+
+// Show scroll bar
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.3);
+}
+
+h5, .control-label {
+  font-family: 'Brandon';
+}
+
 .gbData__container {
   opacity: 0;
 }
@@ -11,4 +28,44 @@
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 15px;
+}
+
+.text-box-subheading {
+  font-size: 15px;
+}
+
+.isbn-label {
+  text-transform: uppercase;
+}
+
+.query-isbn, .query-title {
+  margin-top: 5px;
+}
+
+.form-group-location {
+  margin-top: 20px;
+}
+
+.new-book-description {
+  height: 150px;
+  overflow-y: scroll;
+  border: 1px solid #c3c3c3;
+}
+
+.submit-btn {
+  color: white;
+  background-color: $homepage-green;
+  width: 150px;
+  margin-right: 20px;
+}
+
+.btn-cancel {
+  background-color: $homepage-lightgrey;
+  color: white;
+  width: 150px;
+}
+
+.gbData__container {
+  border: 2px dotted #c3c3c3;
+  padding: 10px;
 }

@@ -3,7 +3,7 @@
 <%= form_for @book, :html => { :class => "form-horizontal book", role: "form" } do |f| %>
 
   <div class="form-group form-group-isbn">
-    <%= label_tag 'ISBN', nil, :class => 'control-label col-lg-2' %>
+    <%= label_tag 'ISBN', nil, :class => 'isbn-label control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= number_field_tag 'ISBN (optional)', nil, :class => 'form-control query-isbn', placeholder: "Search by ISBN"%>
     </div>
@@ -14,8 +14,6 @@
       <%= text_field_tag 'Title', nil, :class => 'form-control query-title', placeholder: "Search by title", autofocus: true %>
     </div>
   </div>
-</div>
-</div>
 
   <%= f.hidden_field :isbn, bind: "isbn" %>
   <%= f.hidden_field :title, bind: "title" %>
@@ -31,19 +29,19 @@
   <%= f.hidden_field :description, bind: "description" %>
   <%= f.hidden_field :imageurl, bind: "imageurl" %>
 
-<div class="row custom-well">
+  <%= render :partial => 'bookResults' %>
+
   <div class="form-group form-group-location">
-    <%= label_tag 'Where can people find this book?', nil, :class => 'control-label col-lg-2' %>
+    <%= label_tag 'Where can Shopifolks find this book?', nil, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :location, class: 'form-control', required: true, placeholder: "Example. 9th Floor - User Experience Pod or 8th Floor Bookshelf" %>
     </div>
   </div>
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit 'Add Book', :class => 'btn btn-primary submit-btn', disabled: true %>
+      <%= f.submit 'Add Book', :class => 'btn submit-btn', disabled: true %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                books_path, :class => 'btn btn-default' %>
+                books_path, :class => 'btn btn-cancel' %>
     </div>
   </div>
-</div>
 <% end %>

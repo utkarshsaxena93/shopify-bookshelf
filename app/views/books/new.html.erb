@@ -6,20 +6,11 @@
 
 <div class="row">
   <div class="col-lg-12 custom-well">
-    <h1 class="newBook__heading">Add books to <span class="shopify-green-text">Shopify Bookshelf</span></h1>
-    <h4>Fill in the form below to add a book.</h4>
-    <h5>Cannot find the book you want to add? Don't worry. Fill out <a href="https://goo.gl/forms/ccPKH0lp98zCmG103" target="_blank">this form</a> and I will take care of the rest :D</h5>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-lg-12 custom-well">
-    <h5 class="text-box-heading">Enter an ISBN or Title to search books:</h5>
+    <h5 class="text-box-heading">Search by ISBN or Title</h5>
+    <h5 class="text-box-subheading">Cannot find the book you want to add? Don't worry. Fill out <a href="https://goo.gl/forms/ccPKH0lp98zCmG103" target="_blank">this form</a> and I will take care of the rest :D</h5>
     <%= render :partial => 'form' %>
   </div>
 </div>
-
-<%= render :partial => 'bookResults' %>
 
 <% content_for :scripts do %>
   <%= javascript_include_tag 'addNewBook' %>
