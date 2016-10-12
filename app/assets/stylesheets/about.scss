@@ -4,8 +4,26 @@
   padding-top: 10px;
 }
 
-.about__paragraph, .about__thingstodo {
+.about__heading {
+  font-family: 'Brandon';
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+ .about__paragraph, .about__foundermark {
+   font-family: 'Brandon';
+   margin-bottom: 20px;
+ }
+
+.about__paragraph {
   font-size: 1.2em;
+  line-height: 30px;
+}
+
+.about__thingstodo {
+  font-family: 'Brandon';
+  font-size: 1.2em;
+  list-style: none;
 }
 
 .about__foundermark {
@@ -16,4 +34,28 @@
 
 .about__message {
   margin-bottom: 15px;
+}
+
+.team__span {
+  display: block;
+  letter-spacing: 0.5px;
+}
+
+.team__image {
+  width: 200px;
+}
+
+.team__member {
+  padding: 20px;
+  @media screen and (max-width: 990px) {
+    text-align: center;
+  }
+}
+
+.team__member__info {
+  font-family: 'Brandon';
+  margin-top: 10px;
+  @media screen and (min-width: 990px) {
+    margin-top: 60px;
+  }
 }
