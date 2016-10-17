@@ -13,7 +13,7 @@
     <% obj.each do |book| %>
       <tr>
         <td><%= book.isbn %></td>
-        <td><%= link_to book.title, book_path(book) %></td>
+        <td><%= link_to book.title, book_path(Book.where(isbn: book.isbn)[0].id) %></td>
         <% if @user.id == current_user.id %>
           <td>
             <%= link_to 'Remove', remove_from_wish_list_path(book), :method => :delete,
