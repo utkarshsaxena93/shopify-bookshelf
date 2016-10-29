@@ -6,7 +6,7 @@ ready = (event) ->
     $elModal = $('#modal')
     $elModalLabel = $('.modal-title')
     $elModalBookidInput = $('.modal__bookidInput')
-    $elForm = $('.recommendaiton__form')
+    $elForm = $('.recommendation__form')
     $elModalFooter = $('.modal-footer')
     $elModalTextarea = $('#recommendation')
     targetURL = "/addrecommendation"
@@ -14,17 +14,24 @@ ready = (event) ->
     _renderMsg = (msg, id) ->
       $elModal.modal('hide')
       if msg
-        $(".notifications-#{id}").html($("<p class='bg-success'></p>").html("Successfully added the recommendation. <strong>Your recommendation will appear shortly</strong>. Go to your <a href='/dashboard'>dashboard</a> to manage your recommendations."))
+        $(".notifications-#{id}").html($("<p class='bg-success'></p>").html("Successfully added the review. <strong>Your review will appear shortly</strong>. Go to your <a href='/dashboard'>dashboard</a> to manage your reviews."))
         return
       else
-        $(".notifications-#{id}").html($("<p class='bg-danger'></p>").html("Failed to add your recommendation. <strong>Please note you can add only one recommendation per book.</strong> Go to your <a href='/dashboard'>dashboard</a> to manage your recommendations."))
+        $(".notifications-#{id}").html($("<p class='bg-danger'></p>").html("Failed to add your review. <strong>Please note you can add only one review per book.</strong> Go to your <a href='/dashboard'>dashboard</a> to manage your reviews."))
         return
 
-    _showModal = (bookid, bookTitle) ->
-      $elModalLabel.text("Write a recommendation for #{bookTitle}")
+    _showModal = (bookid, bookTitle) =>
+      $elModalLabel.text("Write a review for #{bookTitle}")
       $elModal.attr("data-bookid", bookid).modal('show')
       $elModalBookidInput.val(bookid)
       $elModalTextarea.val("")
+
+      $elForm.on 'submit', (event) =>
+        event.preventDefault()
+        booksID = $elModalBookidInput.val()
+        $.post( targetURL, {bookid: booksID, recommendation: $elModalTextarea.val()}, (result) =>
+            _renderMsg(result.success, booksID)
+        );
 
     init = () ->
       $elBtn.on 'click', (event) =>
@@ -32,12 +39,6 @@ ready = (event) ->
         this.bookid = $(event.target).attr("data-bookid")
         bookTitle = $(".book-#{this.bookid}__title").text()
         _showModal(this.bookid, bookTitle)
-
-      $elForm.on 'submit', (event) =>
-        event.preventDefault()
-        $.post( targetURL, {bookid: this.bookid, recommendation: $elModalTextarea.val()}, (result) =>
-            _renderMsg(result.success, this.bookid)
-        );
 
     return {
       init: init

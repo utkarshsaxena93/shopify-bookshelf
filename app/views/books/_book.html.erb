@@ -10,17 +10,17 @@
       <div class="col-lg-9">
         <a href="/books/<%= book.id %>" class="book-<%= book.id %>__linktag">
           <h3 class="book__title book-<%= book.id %>__title"><%= book.title %></h3>
-          <span class="book-info-span-one book-<%= book.id %>__authors">by <%= book.author %></span>
           <% if book.recommendation.any? %>
             <span class="label label-default recommended-label"><i class="fa fa-star" aria-hidden="true"></i> Recommended</span>
           <% end %>
+          <span class="book-info-span-one book-<%= book.id %>__authors">by <%= book.author %></span>
         </a>
         <h5>Category: <span><%= book.category %></span></h5>
       </div>
       <div class="col-lg-3 col-sm-12">
         <% if current_user and !book.recommendation.map{|elem| elem.user_id}.include?(current_user.id) %>
         <button type="button" class="btn btn-small btn-recommendation book-<%= book.id %>__addRecommendation" data-bookid="<%= book.id %>" data-target="#modal">
-          <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add a recommendation
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add a review
         </button>
         <% end %>
       </div>
