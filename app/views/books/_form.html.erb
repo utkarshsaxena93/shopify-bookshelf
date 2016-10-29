@@ -15,6 +15,14 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit 'Add Book', :class => 'btn submit-btn', disabled: true %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                books_path, :class => 'btn btn-cancel' %>
+    </div>
+  </div>
+
   <%= f.hidden_field :isbn, bind: "isbn" %>
   <%= f.hidden_field :title, bind: "title" %>
   <%= f.hidden_field :googleid, bind: "id" %>
@@ -30,18 +38,4 @@
   <%= f.hidden_field :imageurl, bind: "imageurl" %>
 
   <%= render :partial => 'bookResults' %>
-
-  <div class="form-group form-group-location">
-    <%= label_tag 'Where can Shopifolks find this book?', nil, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :location, class: 'form-control', required: true, placeholder: "Example. 9th Floor - User Experience Pod or 8th Floor Bookshelf" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit 'Add Book', :class => 'btn submit-btn', disabled: true %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                books_path, :class => 'btn btn-cancel' %>
-    </div>
-  </div>
 <% end %>

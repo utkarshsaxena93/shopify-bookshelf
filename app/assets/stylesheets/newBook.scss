@@ -46,12 +46,6 @@ h5, .control-label {
   margin-top: 20px;
 }
 
-.new-book-description {
-  height: 150px;
-  overflow-y: scroll;
-  border: 1px solid #c3c3c3;
-}
-
 .submit-btn {
   color: white;
   background-color: $homepage-green;
@@ -63,9 +57,4 @@ h5, .control-label {
   background-color: $homepage-lightgrey;
   color: white;
   width: 150px;
-}
-
-.gbData__container {
-  border: 2px dotted #c3c3c3;
-  padding: 10px;
 }
