@@ -22,7 +22,7 @@
 en:
   activity:      
     recommendation:
-      create: "recommended"
+      create: "reviewed"
     books_wishlist:
       create: 'to wishlist.'
     books_read:

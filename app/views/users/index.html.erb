@@ -26,10 +26,7 @@
           <p class='text-italic'>
              Number of book(s) read: <span class='text-bold'><%= user.books_reads.count %></span>
           </p>
-
-          <p class='text-italic'>
-             Number of book(s) contributed to Shopify Bookshelf: <span class='text-bold'><%= user.books.count %></span>
-          </p>
+          
           <p class='text-italic'>
             <%= link_to 'VIEW PROFILE', user_path(user), :class => 'btn btn-primary' %>
           </p>
