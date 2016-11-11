@@ -5,6 +5,6 @@ class InviteUser < ApplicationMailer
     @current_user = current_user
     @userEmail = invitedUserEmail
     mail( :to => @userEmail,
-    :subject => "You've been invited to join Shopify Bookshelf." )
+    :subject => "You've been invited to join Shopify Bookbar." )
   end
 end
