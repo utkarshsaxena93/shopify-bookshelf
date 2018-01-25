@@ -3,9 +3,9 @@
 Devise.setup do |config|
   # Google Authentication
   if ENV["GOOGLE_CLIENT_ID"] and ENV["GOOGLE_CLIENT_SECRET"]
-    config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"], { }
+    config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"], {hd: 'shopify.com'}
   else
-    config.omniauth :google_oauth2, "523156434608-hcmtu4vh7ut6h9vh6mbfu1uo30cls4ah.apps.googleusercontent.com", "1baH-4VutNIDypoVf1Es5Jp-", { }
+    config.omniauth :google_oauth2, "523156434608-hcmtu4vh7ut6h9vh6mbfu1uo30cls4ah.apps.googleusercontent.com", "1baH-4VutNIDypoVf1Es5Jp-", {hd: 'shopify.com'}
   end
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
